@@ -1,3 +1,4 @@
+#require 'sinatra'
 require 'bundler'
 Bundler.require
 Dir[File.join(File.dirname(__FILE__), 'models', '*.rb')].each { |file| require file }
@@ -15,6 +16,12 @@ class SlowFood < Sinatra::Base
   register Sinatra::Flash
   register Sinatra::Warden
   set :session_secret, "supersecret"
+
+  env = ENV['RACK_ENV'] || 'development'
+  DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/slow_#{env}")
+  DataMapper::Model.raise_on_save_failure = true
+  DataMapper.finalize
+  DataMapper.auto_upgrade!
 
   #binding.pry
   #Create a test User
