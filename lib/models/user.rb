@@ -3,16 +3,13 @@ class User
   include DataMapper::Resource
 
   property :id, Serial, key: true
-  property :username, String, length: 128
+  property :username, String, length: 128, unique: true
 
   property :password, BCryptHash
 
+
   def authenticate(attempted_password)
-    if self.password == attempted_password
-      true
-    else
-      false
-    end
+    self.password == attempted_password
   end
 end
 
