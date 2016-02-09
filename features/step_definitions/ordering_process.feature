@@ -6,22 +6,23 @@ Feature: As a visitor to the resturant website
   - see expected time to pick up
 
   Scenario: view the menu
-    Given Iam on the main page
+    Given I am on the home page
     When I click on "menu" link
-    Then I should see list of dishes / category / price
+    Then I should see list of "categories"
+    And each category include "dishes"
+    And each dish has "price"
 
   Scenario: Select order items
-    Given Iam on the main page
+    Given Iam on the home page
     And I click on "menu" link
     When I select a "Salad"
-    And i select a "Pasta"
-    Then "Salad" and "Pasta" should be added to my "order"
-    And "Salad" and "Pasta" pricees added to my "order value"
+    Then "Salad" and should be added to my "order"
+    And "Salad" price added to my "order value"
 
   Scenario: finalize order
-    Given I slected order items
+    Given My order containes "Salad" and "Pasta"
     And I click on "proceed" link
-    And its 18:00 now
+    And the time is 18:00 
     Then I should see "Thank you for ordering: Salad and Pasta"
     And I should see "Your order total is : 120"
     And I should see "Your order will be ready for pick up at 18:30"

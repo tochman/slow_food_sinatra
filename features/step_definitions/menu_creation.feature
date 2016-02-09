@@ -14,9 +14,9 @@ Feature: As a restuarnt owner
     Given I am a registered and logged in as admin
     When I click "menu" link
     And I click "Add dish" link
-    And I fill in "dish title" with "Salad"
-    And I select "dish category" as "Starter"
-    And I fill in "dish price" with "50"
+    And I fill in "name" with "Salad"
+    And I select "category" as "Starter"
+    And I fill in "price" with "50"
     And I click "Add" link
     Then a new "dish" should be created
     And I should be on the menu index page
