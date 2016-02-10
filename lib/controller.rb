@@ -1,3 +1,4 @@
+#require 'sinatra'
 require 'bundler'
 Bundler.require
 require 'sinatra/form_helpers'
@@ -17,11 +18,11 @@ class SlowFood < Sinatra::Base
 
   #binding.pry
   #Create a test User
-  if User.count == 0
-    @user = User.create(username: "admin")
-    @user.password = "admin"
-    @user.save
-  end
+  #if User.count == 0
+  #  @user = User.create(username: "admin")
+  #  @user.password = "admin"
+  #  @user.save
+  #end
 
   use Warden::Manager do |config|
     # Tell Warden how to save our User info into a session.
@@ -73,16 +74,13 @@ class SlowFood < Sinatra::Base
     end
 
     post '/register' do
-      user = User.new(username: params[:user][:username], password: params[:user][:password])
-      begin user.save
+      user = User.new(username: params[:user][:username], password: params[:user][:password], admin: true)
+      if user.save
+        env['warden'].authenticate!
         flash[:success] = "Successfully created account for #{current_user.username}"
         redirect '/'
-      rescue
-        @message = ""
-        user.errors.each do |e|
-          @massage = [@message, e.to_s].join()
-        end
-        flash[:error] = @message
+      else
+        flash[:error] = user.errors.first
       end
       redirect '/auth/register'
     end

@@ -9,6 +9,10 @@ require 'capybara/cucumber'
 require 'rspec'
 require 'pry'
 
+require 'database_cleaner'
+require 'database_cleaner/cucumber'
+
+
 Capybara.app = SlowFood
 
 class SlowFoodWorld
@@ -19,4 +23,10 @@ end
 
 World do
   SlowFood.new
+end
+
+DatabaseCleaner.strategy = :truncation
+
+Around do |scenario, block|
+  DatabaseCleaner.cleaning(&block)
 end
