@@ -1,4 +1,4 @@
-#require 'sinatra'
+# require 'sinatra'
 require 'bundler'
 Bundler.require
 require 'sinatra/form_helpers'
@@ -7,28 +7,27 @@ require_relative 'helpers/data_mapper'
 require_relative 'helpers/warden'
 require 'pry'
 
-
 class SlowFood < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
   register Sinatra::Contrib
   register Sinatra::Warden
   helpers Sinatra::FormHelpers
-  set :session_secret, "supersecret"
+  set :session_secret, 'supersecret'
 
-  #binding.pry
-  #Create a test User
-  #if User.count == 0
+  # binding.pry
+  # Create a test User
+  # if User.count == 0
   #  @user = User.create(username: "admin")
   #  @user.password = "admin"
   #  @user.save
-  #end
+  # end
 
   use Warden::Manager do |config|
     # Tell Warden how to save our User info into a session.
     # Sessions can only take strings, not Ruby code, we'll store
     # the User's `id`
-    config.serialize_into_session { |user| user.id }
+    config.serialize_into_session(&:id)
     # Now tell Warden how to take what we've stored in the session
     # and get a User from that information.
     config.serialize_from_session { |id| User.get(id) }
@@ -46,7 +45,7 @@ class SlowFood < Sinatra::Base
     config.failure_app = self
   end
 
-  Warden::Manager.before_failure do |env, opts|
+  Warden::Manager.before_failure do |env, _opts|
     env['REQUEST_METHOD'] = 'POST'
   end
 
@@ -55,6 +54,7 @@ class SlowFood < Sinatra::Base
   end
 
   namespace '/auth' do
+
     get 'login' do
       erb :login
     end
@@ -74,14 +74,14 @@ class SlowFood < Sinatra::Base
     end
 
     post '/register' do
-      user = User.new(username: params[:user][:username], password: params[:user][:password], admin: true)
-      if user.save
-        env['warden'].authenticate!
-        flash[:success] = "Successfully created account for #{current_user.username}"
-        redirect '/'
-      else
-        flash[:error] = user.errors.first
-      end
+      user = User.new(username: params[:user][:username], password: params[:user][:password], password_confirmation: params[:user][:password_confirmation], email: params[:user][:email], phone_number: params[:user][:phone_number], admin: false)
+      begin user.save
+            env['warden'].authenticate!
+            flash[:success] = "Successfully created account for #{current_user.username}"
+            redirect '/'
+       rescue
+         flash[:error] = user.errors.full_messages.join(',')
+       end
       redirect '/auth/register'
     end
 
@@ -100,7 +100,6 @@ class SlowFood < Sinatra::Base
       redirect '/auth/login'
     end
   end
-
 
   get '/protected' do
     env['warden'].authenticate!
