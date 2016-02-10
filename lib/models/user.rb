@@ -7,7 +7,11 @@ class User
   property :username, String, length: 128, unique: true
   property :admin, Boolean, default: false
   property :password, BCryptHash
-  property :email, Text
+  property :email, String, format: :email_address,
+                           messages: {
+                             is_unique: 'We already have that email.',
+                             format: "Doesn't look like an email address to me ..."
+                           }
   property :phone_number, Text
 
   validates_presence_of :email, if: ->(t) { t.admin == false }, message: 'Please add email adress'

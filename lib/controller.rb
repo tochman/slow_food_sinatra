@@ -54,12 +54,11 @@ class SlowFood < Sinatra::Base
   end
 
   namespace '/auth' do
-
-    get 'login' do
+    get '/login' do
       erb :login
     end
 
-    post 'login' do
+    post '/login' do
       env['warden'].authenticate!
       flash[:success] = "Successfully logged in #{current_user.username}"
       if session[:return_to].nil?
@@ -92,12 +91,28 @@ class SlowFood < Sinatra::Base
       redirect '/'
     end
 
-    post 'unauthenticated' do
+    post '/unauthenticated' do
       session[:return_to] = env['warden.options'][:attempted_path] if session[:return_to].nil?
 
       # Set the error and use a fallback if the message is not defined
       flash[:error] = env['warden.options'][:message] || 'You must log in'
       redirect '/auth/login'
+    end
+  end
+
+  get '/menu' do
+  erb :menu
+  end
+
+
+  namespace '/dish' do
+
+
+    post '/create' do
+      dish = Dish.new(name: params[:dish][:name], price: params[:dish][:price], category: params[:dish][:category])
+      dish.save
+      flash[:success] = "Successfully added #{dish.name}"
+      redirect 'dish/create'
     end
   end
 
