@@ -1,0 +1,12 @@
+<%= form('/menu/add_dish', :post) %>
+
+<% fieldset(:dish) do |f| %>
+  <%= f.label(:name) %>
+  <%= f.input(:name) %>
+  <%= f.label(:price) %>
+  <%= f.input(:price) %>
+  <%= f.label(:category) %>
+  <%= f.input(:category) %>
+<% end %>
+
+<%= submit 'Add Dish' %>

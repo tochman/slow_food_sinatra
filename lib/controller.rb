@@ -105,14 +105,21 @@ class SlowFood < Sinatra::Base
   end
 
 
-  namespace '/dish' do
+  namespace '/menu' do
 
+    get '/' do
+    erb :menu
+    end
 
-    post '/create' do
+    get '/add_dish' do
+       erb :add_dish
+    end
+
+    post '/add_dish' do
       dish = Dish.new(name: params[:dish][:name], price: params[:dish][:price], category: params[:dish][:category])
       dish.save
       flash[:success] = "Successfully added #{dish.name}"
-      redirect 'dish/create'
+      redirect '/'
     end
   end
 

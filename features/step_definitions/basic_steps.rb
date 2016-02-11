@@ -1,12 +1,12 @@
-Given(/^I am a registered and logged in as admin$/) do
+Given(/^I am logged in as admin$/) do
   steps %(
-     Given I am on the home page
-     And I click on "Register"
-     Then I should be on the "Register" page
-     And I fill in "Username" with "admin"
-     And I fill in "Password" with "admin"
-     And I click on "Create account"
-     Then I should be on the "home" page
+  Given I am on the home page
+  And I click on "Log_In"
+  Then I should be on the "login" page
+  And I fill in "user[username]" with "admin"
+  And I fill in "user[password]" with "admin"
+  And I click on "Log In"
+  Then I should be on the "home" page
   )
 end
 
@@ -25,8 +25,12 @@ Then(/^I should be on the "([^"]*)" page$/) do |page|
   case page
   when 'Register'
     expect(current_path).to eq '/auth/register'
+  when 'login'
+    expect(current_path).to eq '/auth/login'
   when 'Menu'
     expect(current_path).to eq '/menu'
+  when 'home page'
+    expect(current_path).to eq '/'
   end
 end
 
