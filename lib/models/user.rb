@@ -9,7 +9,7 @@ class User
   property :password, BCryptHash
   property :email, String, format: :email_address,
                            messages: {
-                             is_unique: 'We already have that email.',
+                             is_unique: 'We already have that email'
                              format: "Doesn't look like an email address to me ..."
                            }
   property :phone_number, Text
