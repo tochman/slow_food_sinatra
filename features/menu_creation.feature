@@ -6,16 +6,14 @@ Feature: As a restuarnt owner
   dish price
 
   Scenario: list menu items
-    Given I am logged in as admin
+    Given I am registerd as admin
     Then I should be on the "home" page
     And I click on "Menu"
     Then I should be on the "Menu" page
     And I should see "You dont have any dishes yet"
 
-  #    Then I should see "You did not add any dish yet"
-  #
   Scenario: Add a dish
-   Given I am logged in as admin
+   Given I am registerd as admin
     And I click on "Menu"
     Then I should be on the "Menu" page
     And I click on "Add Dish"

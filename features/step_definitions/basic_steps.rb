@@ -1,12 +1,48 @@
-Given(/^I am logged in as admin$/) do
+Given(/^I am registerd as visitor$/) do
   steps %(
   Given I am on the home page
-  And I click on "Log_In"
-  Then I should be on the "login" page
-  And I fill in "user[username]" with "admin"
-  And I fill in "user[password]" with "admin"
-  And I click on "Log In"
+  And I click on "Register"
+  Then I should be on the "Register" page
+  And I fill in "Username" with "user"
+  And I fill in "Password" with "user"
+  And I fill in "Password Confirmation" with "user"
+  And I fill in "Email" with "visitor@me.com"
+  And I fill in "Phone Number" with "0988002626"
+  And I click on "Create account"
   Then I should be on the "home" page
+  And I should see "Successfully created account for user"
+  )
+end
+
+Given(/^I am registerd and logged out admin$/) do
+  steps %(
+  Given I am registerd as admin
+  And I click on "Log_Out"
+  Then I should be on the "home" page
+  And I should see "Successfully logged out"
+  )
+end
+
+Given(/^I am registerd as admin$/) do
+  steps %(
+  Given I am on the home page
+  And I click on "Register"
+  Then I should be on the "Register" page
+  And I fill in "Username" with "admin"
+  And I fill in "Password" with "admin"
+  And I fill in "Password Confirmation" with "admin"
+  And I click on "Create account"
+  Then I should be on the "home" page
+  And I should see "Successfully created account for admin"
+  )
+end
+
+Given(/^I am registerd and logged out visitor$/) do
+  steps %(
+  Given I am registerd as visitor
+  And I click on "Log_Out"
+  Then I should be on the "home" page
+  And I should see "Successfully logged out"
   )
 end
 
@@ -39,6 +75,7 @@ And(/^I fill in "([^"]*)" with "([^"]*)"$/) do |element, value|
 end
 
 Then(/^show me the page$/) do
+  save_and_open_page
 end
 
 And(/^I should see "([^"]*)"$/) do |string|

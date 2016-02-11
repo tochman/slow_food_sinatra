@@ -73,7 +73,7 @@ class SlowFood < Sinatra::Base
     end
 
     post '/register' do
-      user = User.new(username: params[:user][:username], password: params[:user][:password], password_confirmation: params[:user][:password_confirmation], email: params[:user][:email], phone_number: params[:user][:phone_number], admin: false)
+      user = User.new(username: params[:user][:username], password: params[:user][:password], password_confirmation: params[:user][:password_confirmation], email: params[:user][:email], phone_number: params[:user][:phone_number], admin: true)
       begin user.save
             env['warden'].authenticate!
             flash[:success] = "Successfully created account for #{current_user.username}"

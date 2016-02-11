@@ -13,9 +13,9 @@ Feature: As visitor or Admin,
     Then I should be on the "Register" page
     And I fill in "Username" with "admin"
     And I fill in "Password" with "admin"
+    And I fill in "Password Confirmation" with "admin"
     And I click on "Create account"
     Then I should be on the "home" page
-    #Then show me the page
     And I should see "Successfully created account for admin"
 
   Scenario: Register a User : visitor
@@ -29,7 +29,6 @@ Feature: As visitor or Admin,
     And I fill in "Phone Number" with "0988002626"
     And I click on "Create account"
     Then I should be on the "home" page
-    Then show me the page
     And I should see "Successfully created account for user"
 
   Scenario: Register a User : visitor with password not matching
@@ -59,18 +58,18 @@ Feature: As visitor or Admin,
     #Then show me the page
     And I should see "Please add email adress"
 
-    Scenario: Register a User : visitor without valid email
-      Given I am on the home page
-      And I click on "Register"
-      Then I should be on the "Register" page
-      And I fill in "Username" with "user"
-      And I fill in "Password" with "user"
-      And I fill in "Password Confirmation" with "user"
-      And I fill in "Email" with "werwonvwur"
-      And I fill in "Phone Number" with "0988002626"
-      And I click on "Create account"
-      Then I should be on the "home" page
-      And I should see "Doesn't look like an email address to me ..."
+  Scenario: Register a User : visitor without valid email
+    Given I am on the home page
+    And I click on "Register"
+    Then I should be on the "Register" page
+    And I fill in "Username" with "user"
+    And I fill in "Password" with "user"
+    And I fill in "Password Confirmation" with "user"
+    And I fill in "Email" with "werwonvwur"
+    And I fill in "Phone Number" with "0988002626"
+    And I click on "Create account"
+    Then I should be on the "home" page
+    And I should see "Doesn't look like an email address to me ..."
 
   #    Scenario: Register a User : visitor with redundent email
   #      Given I am on the home page
@@ -84,7 +83,6 @@ Feature: As visitor or Admin,
   #      And I click on "Create account"
   #      Then I should be on the "home" page
   #      And I should see "We already have that email"
-
   Scenario: Register a User : visitor without phone number
     Given I am on the home page
     And I click on "Register"
@@ -96,22 +94,46 @@ Feature: As visitor or Admin,
     And I fill in "Phone Number" with ""
     And I click on "Create account"
     Then I should be on the "home" page
-    #Then show me the page
     And I should see "Please provide phone number"
 
-  Scenario: Log in
-    Given I am on the home page
+  #  Scenario: Log in
+  #    Given I am on the home page
+  #    And I click on "Log_In"
+  #    Then I should be on the "login" page
+  #    And I fill in "user[username]" with "user"
+  #    And I fill in "user[password]" with "user"
+  #    And I click on "Log In"
+  #    Then I should be on the "home" page
+  #Then show me the page
+  #    And I should see "Successfully logged in user"
+  Scenario: Log out : Visitor
+    Given I am registerd as visitor
+    And I click on "Log_Out"
+    Then I should be on the "home" page
+    And I should see "Successfully logged out"
+
+  Scenario: Log out : Admin
+    Given I am registerd as admin
+    And I click on "Log_Out"
+    Then I should be on the "home" page
+    And I should see "Successfully logged out"
+
+  Scenario: Log in : Visitor
+    Given I am registerd and logged out visitor
     And I click on "Log_In"
     Then I should be on the "login" page
     And I fill in "user[username]" with "user"
     And I fill in "user[password]" with "user"
     And I click on "Log In"
     Then I should be on the "home" page
-    Then show me the page
     And I should see "Successfully logged in user"
 
-  Scenario: Log out
-    Given I am logged in as admin
-    And I click on "Log_Out"
-    Then I should be on the "home" page
-    And I should see "Successfully logged out"
+    Scenario: Log in : Admin
+      Given I am registerd and logged out admin
+      And I click on "Log_In"
+      Then I should be on the "login" page
+      And I fill in "user[username]" with "admin"
+      And I fill in "user[password]" with "admin"
+      And I click on "Log In"
+      Then I should be on the "home" page
+      And I should see "Successfully logged in admin"
