@@ -39,6 +39,16 @@ Given(/^the following categories exists$/) do |table|
    end
 end
 
+Given(/^the following dishes exists$/) do |table|
+ #binding.pry
+  table.hashes.each do |hash|
+    category = Category.first(name: hash[:category])
+    #binding.pry
+
+    Dish.create(name: hash[:name], price: hash[:price].to_i, category: category)
+   end
+end
+
 Given(/^I am on the ([^"]*)$/) do |page|
   case page
   when 'home page'

@@ -15,6 +15,7 @@ gem 'data_mapper'
 gem 'pg'
 gem 'dm-postgres-adapter'
 gem 'pry'
+gem 'pry-byebug'
 
 # gem 'dm-core', '1.2.1'
 # gem 'dm-sqlite-adapter', '1.2.0'

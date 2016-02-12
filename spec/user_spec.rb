@@ -7,4 +7,5 @@ describe User do
   it { is_expected.to have_property :email }
   it { is_expected.to have_property :phone_number }
   it { is_expected.to have_many :dishes }
+  it { is_expected.to have_many :baskets }
 end

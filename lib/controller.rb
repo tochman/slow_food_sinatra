@@ -41,7 +41,7 @@ class SlowFood < Sinatra::Base
     env['REQUEST_METHOD'] = 'POST'
   end
 
-  # binding.pry
+   binding.pry
   get '/' do
     erb :index
   end
@@ -118,14 +118,20 @@ class SlowFood < Sinatra::Base
     end
   end
 
-  get '/menu' do
-    erb :menu
-  end
-
   namespace '/menu' do
     get '/' do
+      @dishes = Dish.all
       erb :menu
     end
+
+    post '/' do
+      category = Category.all(name:params[:category][:name])
+  menu = Basket.new(
+  category: category
+  )
+  binding.pry
+    end
+
 
     get '/add_dish' do
       env['warden'].authenticate!
@@ -133,14 +139,11 @@ class SlowFood < Sinatra::Base
     end
 
     post '/add_dish' do
-      #binding.pry
       category = Category.first(name:params[:category][:name])
       dish = Dish.new(
         name: params[:dish][:name],
         price: params[:dish][:price],
         category: category,
-        #category: params[:dish][:category],
-        #category: category,
         user: user
       )
 
