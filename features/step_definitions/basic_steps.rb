@@ -1,22 +1,17 @@
 Given(/^I am registerd as visitor$/) do
-  steps %(
-    Given I am on the home page
-    And I click on "Register"
-    Then I should be on the "Register" page
-    And I fill in "Username" with "user"
-    And I fill in "Password" with "user"
-    And I fill in "Password Confirmation" with "user"
-    And I fill in "Email" with "visitor@me.com"
-    And I fill in "Phone Number" with "0988002626"
-    And I click on "Create account"
-    Then I should be on the "home" page
-    And I should see "Successfully created account for user"
-  )
+  user = User.create(username: 'Visitor',
+                     password: 'password',
+                     password_confirmation: 'password',
+                     email: 'visitor@random.com',
+                     phone_number: '12345667',
+                     admin: false)
+  login_as user
 end
 
 Given(/^I am registerd and logged out admin$/) do
-  steps %(
+  steps %q(
     Given I am registerd as admin
+    And I am on the home page
     And I click on "Log_Out"
     Then I should be on the "home" page
     And I should see "Successfully logged out"
@@ -24,22 +19,14 @@ Given(/^I am registerd and logged out admin$/) do
 end
 
 Given(/^I am registerd as admin$/) do
-  steps %(
-    Given I am on the home page
-    And I click on "Register Admin"
-    Then I should be on the "Register Admin" page
-    And I fill in "Username" with "admin"
-    And I fill in "Password" with "admin"
-    And I fill in "Password Confirmation" with "admin"
-    And I click on "Create account"
-    Then I should be on the "home" page
-    And I should see "Successfully created account for admin"
-  )
+  user = User.create(username: 'Admin', password: 'password', password_confirmation: 'password', admin: true)
+  login_as user
 end
 
 Given(/^I am registerd and logged out visitor$/) do
-  steps %(
+  steps %q(
     Given I am registerd as visitor
+    And I am on the home page
     And I click on "Log_Out"
     Then I should be on the "home" page
     And I should see "Successfully logged out"

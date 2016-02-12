@@ -86,12 +86,14 @@ Feature: As visitor or Admin,
 
   Scenario: Log out : Visitor
     Given I am registerd as visitor
+    And I am on the home page
     And I click on "Log_Out"
     Then I should be on the "home" page
     And I should see "Successfully logged out"
 
   Scenario: Log out : Admin
     Given I am registerd as admin
+    And I am on the home page
     And I click on "Log_Out"
     Then I should be on the "home" page
     And I should see "Successfully logged out"
@@ -100,18 +102,18 @@ Feature: As visitor or Admin,
     Given I am registerd and logged out visitor
     And I click on "Log_In"
     Then I should be on the "login" page
-    And I fill in "user[username]" with "user"
-    And I fill in "user[password]" with "user"
+    And I fill in "user[username]" with "Visitor"
+    And I fill in "user[password]" with "password"
     And I click on "Log In"
     Then I should be on the "home" page
-    And I should see "Successfully logged in user"
+    And I should see "Successfully logged in Visitor"
 
   Scenario: Log in : Admin
     Given I am registerd and logged out admin
     And I click on "Log_In"
     Then I should be on the "login" page
-    And I fill in "user[username]" with "admin"
-    And I fill in "user[password]" with "admin"
+    And I fill in "user[username]" with "Admin"
+    And I fill in "user[password]" with "password"
     And I click on "Log In"
     Then I should be on the "home" page
-    And I should see "Successfully logged in admin"
+    And I should see "Successfully logged in Admin"

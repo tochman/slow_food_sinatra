@@ -13,6 +13,7 @@ Feature: As a restuarnt owner
 
   Scenario: list menu items
     Given I am registerd as admin
+    And I am on the home page
     Then I should be on the "home" page
     And I click on "Menu"
     Then I should be on the "Menu" page
@@ -20,6 +21,7 @@ Feature: As a restuarnt owner
 
   Scenario: Add a dish as admin
     Given I am registerd as admin
+    And I am on the home page
     And I click on "Menu"
     Then I should be on the "Menu" page
     And I click on "Add Dish"
@@ -32,6 +34,7 @@ Feature: As a restuarnt owner
 
   Scenario: Add a dish as visitor
     Given I am registerd as visitor
+    And I am on the home page
     And I click on "Menu"
     Then I should be on the "Menu" page
     And I click on "Add Dish"

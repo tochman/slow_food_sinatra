@@ -8,7 +8,6 @@ require 'capybara'
 require 'capybara/cucumber'
 require 'rspec'
 require 'pry'
-
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
 
@@ -30,3 +29,8 @@ DatabaseCleaner.strategy = :truncation
 Around do |scenario, block|
   DatabaseCleaner.cleaning(&block)
 end
+
+
+Warden.test_mode!
+World Warden::Test::Helpers
+After { Warden.test_reset! }

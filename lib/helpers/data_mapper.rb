@@ -5,7 +5,6 @@ DataMapper.finalize
 #DataMapper.auto_upgrade!
 DataMapper.auto_migrate!
 
-binding.pry
 
 if ENV['RACK_ENV'] != 'test'
   # Set up the required entries in the db
@@ -13,6 +12,6 @@ if ENV['RACK_ENV'] != 'test'
     Category.first_or_create(name: category)
   end
 
-  User.first_or_create(name: 'Admin', password: 'password', password_confirmation: 'password', admin: true)
+  User.first_or_create(username: 'Admin', password: 'password', password_confirmation: 'password', admin: true)
 end
 
