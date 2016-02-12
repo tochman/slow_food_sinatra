@@ -13,6 +13,7 @@ class User
                              format: "Doesn't look like an email address to me ..."
                            }
   property :phone_number, Text
+  has n, :dishes, through: Resource
 
   validates_presence_of :email, if: ->(t) { t.admin == false }, message: 'Please add email adress'
   validates_presence_of :phone_number, if: ->(t) { t.admin == false }, message: 'Please provide phone number'

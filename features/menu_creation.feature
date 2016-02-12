@@ -12,8 +12,8 @@ Feature: As a restuarnt owner
     Then I should be on the "Menu" page
     And I should see "You dont have any dishes yet"
 
-  Scenario: Add a dish
-   Given I am registerd as admin
+  Scenario: Add a dish as admin
+    Given I am registerd as admin
     And I click on "Menu"
     Then I should be on the "Menu" page
     And I click on "Add Dish"
@@ -24,17 +24,15 @@ Feature: As a restuarnt owner
     Then I should be on the "menu" page
     And I should see "Successfully added Salad"
 
-
-    #  Scenario: Visitors can not add dishes
-    #    Given I am on the home page
-    #    And I click on "menu"
-    #    Then I should not see "Add dish"
-    #Scenario: Add a dish as non admin user
-    #  Given I am a registered and logged in as visitor
-    #  When I click "menu"
-    #  Then I should be on the "menu" page
-    #  Then I should not see "Add dish"
-    #Scenario: Add a dish as non admin user via accessing the route
-    #  Given I am a registered and logged in as visitor
-    #  Given I visit the "add dish" page
-    #  Then I should see "You are not authorived to do that"
+  Scenario: Add a dish as visitor
+    Given I am registerd as visitor
+    And I click on "Menu"
+    Then I should be on the "Menu" page
+    And I click on "Add Dish"
+    And I fill in "Name" with "Salad"
+    And I fill in "Category" with "Starter"
+    And I fill in "Price" with "50"
+    And I click on "Add"
+    Then I should be on the "menu" page
+    And I should see "Sorry!, you are not authorized to add dishes"
+    #Then show me the page

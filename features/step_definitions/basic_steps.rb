@@ -75,7 +75,6 @@ And(/^I fill in "([^"]*)" with "([^"]*)"$/) do |element, value|
 end
 
 Then(/^show me the page$/) do
-  save_and_open_page
 end
 
 And(/^I should see "([^"]*)"$/) do |string|

@@ -71,18 +71,6 @@ Feature: As visitor or Admin,
     Then I should be on the "home" page
     And I should see "Doesn't look like an email address to me ..."
 
-  #    Scenario: Register a User : visitor with redundent email
-  #      Given I am on the home page
-  #      And I click on "Register"
-  #      Then I should be on the "Register" page
-  #      And I fill in "Username" with "user_2"
-  #      And I fill in "Password" with "user_2"
-  #      And I fill in "Password Confirmation" with "user"
-  #      And I fill in "Email" with ""
-  #      And I fill in "Phone Number" with "0988002626"
-  #      And I click on "Create account"
-  #      Then I should be on the "home" page
-  #      And I should see "We already have that email"
   Scenario: Register a User : visitor without phone number
     Given I am on the home page
     And I click on "Register"
@@ -96,16 +84,6 @@ Feature: As visitor or Admin,
     Then I should be on the "home" page
     And I should see "Please provide phone number"
 
-  #  Scenario: Log in
-  #    Given I am on the home page
-  #    And I click on "Log_In"
-  #    Then I should be on the "login" page
-  #    And I fill in "user[username]" with "user"
-  #    And I fill in "user[password]" with "user"
-  #    And I click on "Log In"
-  #    Then I should be on the "home" page
-  #Then show me the page
-  #    And I should see "Successfully logged in user"
   Scenario: Log out : Visitor
     Given I am registerd as visitor
     And I click on "Log_Out"
@@ -128,12 +106,12 @@ Feature: As visitor or Admin,
     Then I should be on the "home" page
     And I should see "Successfully logged in user"
 
-    Scenario: Log in : Admin
-      Given I am registerd and logged out admin
-      And I click on "Log_In"
-      Then I should be on the "login" page
-      And I fill in "user[username]" with "admin"
-      And I fill in "user[password]" with "admin"
-      And I click on "Log In"
-      Then I should be on the "home" page
-      And I should see "Successfully logged in admin"
+  Scenario: Log in : Admin
+    Given I am registerd and logged out admin
+    And I click on "Log_In"
+    Then I should be on the "login" page
+    And I fill in "user[username]" with "admin"
+    And I fill in "user[password]" with "admin"
+    And I click on "Log In"
+    Then I should be on the "home" page
+    And I should see "Successfully logged in admin"

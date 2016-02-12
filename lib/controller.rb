@@ -49,6 +49,7 @@ class SlowFood < Sinatra::Base
     env['REQUEST_METHOD'] = 'POST'
   end
 
+  # binding.pry
   get '/' do
     erb :index
   end
@@ -73,7 +74,14 @@ class SlowFood < Sinatra::Base
     end
 
     post '/register' do
-      user = User.new(username: params[:user][:username], password: params[:user][:password], password_confirmation: params[:user][:password_confirmation], email: params[:user][:email], phone_number: params[:user][:phone_number], admin: true)
+      user = User.new(
+        username: params[:user][:username],
+        password: params[:user][:password],
+        password_confirmation: params[:user][:password_confirmation],
+        email: params[:user][:email],
+        phone_number: params[:user][:phone_number],
+        admin: true
+      )
       begin user.save
             env['warden'].authenticate!
             flash[:success] = "Successfully created account for #{current_user.username}"
@@ -101,25 +109,33 @@ class SlowFood < Sinatra::Base
   end
 
   get '/menu' do
-  erb :menu
+    erb :menu
   end
 
-
   namespace '/menu' do
-
     get '/' do
-    erb :menu
+      erb :menu
     end
 
     get '/add_dish' do
-       erb :add_dish
+      erb :add_dish
     end
 
     post '/add_dish' do
-      dish = Dish.new(name: params[:dish][:name], price: params[:dish][:price], category: params[:dish][:category])
-      dish.save
-      flash[:success] = "Successfully added #{dish.name}"
-      redirect '/'
+      dish = Dish.new(
+        name: params[:dish][:name],
+        price: params[:dish][:price],
+        category: params[:dish][:category],
+        user: user
+      )
+      d = dish.user.username
+      if d == 'admin'
+        dish.save
+        flash[:success] = "Successfully added #{dish.name}"
+        redirect '/'
+      else
+        flash[:error] = 'Sorry!, you are not authorized to add dishes'
+       end
     end
   end
 

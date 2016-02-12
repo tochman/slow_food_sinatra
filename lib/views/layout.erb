@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-<body>
-<title>Sinatra Warden</title>
+  <head>
+    <body>
+      <title>Sinatra Warden</title>
 
-<h1>User authentication</h1>
+      <h1>User authentication</h1>
 
-<p>
+      <p>
 
+        <% if current_user %>
+        Logged in as
+        <%= current_user.username %>
+        <a href="/auth/logout">Log_Out</a>
+      </p>
+      <a href="/menu">Menu</a>
+    <% else %>
+      <a href="/auth/register">Register</a>
+      <a href="/auth/login">Log_In</a>
+      <% end %>
 
-  <% if current_user %>
-    Logged in as <%= current_user.username %>
-    <a href="/auth/logout">Log_Out</a></p>
-    <a href="/menu">Menu</a>
-  <% else %>
-    <a href="/auth/register">Register</a>
-    <a href="/auth/login">Log_In</a>
-  <% end %>
+      <% if flash[:success] %>
+      <div style="color:green;">
+        <%= flash[:success] %>
+      </div>
+      <% end %>
 
-  <% if flash[:success] %>
-    <div style="color:green;">
-      <%= flash[:success] %>
-    </div>
-  <% end %>
+      <% if flash[:error] %>
+      <div style="color:red;">
+        <%= flash[:error] %>
+      </div>
+      <% end %>
 
-  <% if flash[:error] %>
-    <div style="color:red;">
-      <%= flash[:error] %>
-    </div>
-  <% end %>
-
-  <%= yield %>
-  </body>
-</html>
+      <%= yield %>
+    </body>
+  </html>
