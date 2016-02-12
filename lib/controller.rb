@@ -69,8 +69,28 @@ class SlowFood < Sinatra::Base
       end
     end
 
+    get '/admin/register' do
+      erb :admin_register
+    end
+
     get '/register' do
       erb :register
+    end
+
+    post '/admin/register' do
+      user = User.new(
+        username: params[:user][:username],
+        password: params[:user][:password],
+        password_confirmation: params[:user][:password_confirmation],
+        admin: true
+      )
+      begin user.save
+        env['warden'].authenticate!
+        flash[:success] = "Successfully created account for #{current_user.username}"
+        redirect '/'
+      rescue
+        flash[:error] = user.errors.full_messages.join(',')
+      end
     end
 
     post '/register' do
@@ -79,16 +99,15 @@ class SlowFood < Sinatra::Base
         password: params[:user][:password],
         password_confirmation: params[:user][:password_confirmation],
         email: params[:user][:email],
-        phone_number: params[:user][:phone_number],
-        admin: true
+        phone_number: params[:user][:phone_number]
       )
       begin user.save
-            env['warden'].authenticate!
-            flash[:success] = "Successfully created account for #{current_user.username}"
-            redirect '/'
-       rescue
-         flash[:error] = user.errors.full_messages.join(',')
-       end
+        env['warden'].authenticate!
+        flash[:success] = "Successfully created account for #{current_user.username}"
+        redirect '/'
+      rescue
+        flash[:error] = user.errors.full_messages.join(',')
+      end
       redirect '/auth/register'
     end
 
@@ -135,11 +154,9 @@ class SlowFood < Sinatra::Base
 
       d = dish.user
       if d.admin == true
-binding.pry
         dish.save
         flash[:success] = "Successfully added #{dish.name}"
       else
-binding.pry
         flash[:error] = 'Sorry!, you are not authorized to add dishes'
        end
          redirect '/'

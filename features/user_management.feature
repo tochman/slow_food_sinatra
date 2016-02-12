@@ -9,8 +9,8 @@ Feature: As visitor or Admin,
 
   Scenario: Register a User : admin
     Given I am on the home page
-    And I click on "Register"
-    Then I should be on the "Register" page
+    And I click on "Register Admin"
+    Then I should be on the "Register Admin" page
     And I fill in "Username" with "admin"
     And I fill in "Password" with "admin"
     And I fill in "Password Confirmation" with "admin"

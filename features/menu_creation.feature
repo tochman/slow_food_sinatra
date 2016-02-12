@@ -23,7 +23,6 @@ Feature: As a restuarnt owner
     And I click on "Menu"
     Then I should be on the "Menu" page
     And I click on "Add Dish"
-    #Then show me the page
     And I fill in "dish_name" with "Salad"
     And I fill in "Price" with "50"
     And I fill in "category_name" with "Starter"
@@ -42,4 +41,3 @@ Feature: As a restuarnt owner
     And I click on "Add"
     Then I should be on the "menu" page
     And I should see "Sorry!, you are not authorized to add dishes"
-    #Then show me the page
