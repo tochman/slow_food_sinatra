@@ -11,7 +11,7 @@ if ENV['RACK_ENV'] != 'test'
   ['Starter', 'Main course', 'Dessert'].each do |category|
     Category.first_or_create(name: category)
   end
-
-  User.first_or_create(username: 'Admin', password: 'password', password_confirmation: 'password', admin: true)
+  user = User.first(username: 'Admin')
+  User.create(username: 'Admin', password: 'password', password_confirmation: 'password', admin: true) unless user
 end
 
