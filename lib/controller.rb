@@ -14,15 +14,7 @@ class SlowFood < Sinatra::Base
   register Sinatra::Warden
   helpers Sinatra::FormHelpers
   set :session_secret, 'supersecret'
-
-  # binding.pry
-  # Create a test User
-  # if User.count == 0
-  #  @user = User.create(username: "admin")
-  #  @user.password = "admin"
-  #  @user.save
-  # end
-
+  
   use Warden::Manager do |config|
     # Tell Warden how to save our User info into a session.
     # Sessions can only take strings, not Ruby code, we'll store
@@ -137,6 +129,7 @@ class SlowFood < Sinatra::Base
     end
 
     get '/add_dish' do
+      env['warden'].authenticate!
       erb :add_dish
     end
 

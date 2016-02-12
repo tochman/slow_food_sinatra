@@ -27,4 +27,12 @@ class User
     self.admin = options[:admin] || false
     super
   end
+
+  def self.admins
+    all(admin: true)
+  end
+
+  def self.visitors
+    all(admin: false)
+  end
 end
