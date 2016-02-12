@@ -14,7 +14,7 @@ class SlowFood < Sinatra::Base
   register Sinatra::Warden
   helpers Sinatra::FormHelpers
   set :session_secret, 'supersecret'
-  
+
   use Warden::Manager do |config|
     # Tell Warden how to save our User info into a session.
     # Sessions can only take strings, not Ruby code, we'll store
@@ -77,8 +77,7 @@ class SlowFood < Sinatra::Base
         admin: true
       )
       begin user.save
-        env['warden'].authenticate!
-        flash[:success] = "Successfully created account for #{current_user.username}"
+        flash[:success] = "Successfully created account for #{user.username}"
         redirect '/'
       rescue
         flash[:error] = user.errors.full_messages.join(',')

@@ -8,7 +8,8 @@ Feature: As visitor or Admin,
   - Should be able to log out
 
   Scenario: Register a User : admin
-    Given I am on the home page
+    Given I am registerd as admin
+    And I am on the home page
     And I click on "Register Admin"
     Then I should be on the "Register Admin" page
     And I fill in "Username" with "admin"
@@ -16,6 +17,7 @@ Feature: As visitor or Admin,
     And I fill in "Password Confirmation" with "admin"
     And I click on "Create account"
     Then I should be on the "home" page
+    #Then show me the page
     And I should see "Successfully created account for admin"
 
   Scenario: Register a User : visitor

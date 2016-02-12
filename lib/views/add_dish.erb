@@ -1,4 +1,6 @@
+<%if current_user.try(:admin)%>
 <%= form('/menu/add_dish', :post) %>
+
 
 <% fieldset(:dish) do |f| %>
 <%= f.label(:name) %>
@@ -13,3 +15,8 @@
 
 
 <%= submit 'Add Dish' %>
+<%else%>
+<p>
+  Please, enjoy ordering and leave dish creation to our Chef! 
+</p>
+<%end%>
