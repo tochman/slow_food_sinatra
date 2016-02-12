@@ -5,8 +5,11 @@
 <%= f.input(:name) %>
 <%= f.label(:price) %>
 <%= f.input(:price) %>
-<%= f.label(:category) %>
-<%= f.input(:category) %>
 <% end %>
+<% fieldset(:category) do |k| %>
+<%= k.label(:name) %>
+<%= k.input(:name) %>
+<% end %>
+
 
 <%= submit 'Add Dish' %>

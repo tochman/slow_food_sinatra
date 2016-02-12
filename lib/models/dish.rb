@@ -4,8 +4,9 @@ class Dish
   property :id, Serial, key: true
   property :name, String, length: 128, unique: true, :required => true
   property :price, Integer, :required => true
-  property :category, String
+  #property :category, String
 
   belongs_to :user
+  belongs_to :category
 
 end

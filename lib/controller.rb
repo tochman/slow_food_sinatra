@@ -122,20 +122,27 @@ class SlowFood < Sinatra::Base
     end
 
     post '/add_dish' do
+      #binding.pry
+      category = Category.first(name:params[:category][:name])
       dish = Dish.new(
         name: params[:dish][:name],
         price: params[:dish][:price],
-        category: params[:dish][:category],
+        category: category,
+        #category: params[:dish][:category],
+        #category: category,
         user: user
       )
-      d = dish.user.username
-      if d == 'admin'
+
+      d = dish.user
+      if d.admin == true
+binding.pry
         dish.save
         flash[:success] = "Successfully added #{dish.name}"
-        redirect '/'
       else
+binding.pry
         flash[:error] = 'Sorry!, you are not authorized to add dishes'
        end
+         redirect '/'
     end
   end
 

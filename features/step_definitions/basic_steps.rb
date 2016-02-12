@@ -46,6 +46,12 @@ Given(/^I am registerd and logged out visitor$/) do
   )
 end
 
+Given(/^the following categories exists$/) do |table|
+  table.hashes.each do |hash|
+     Category.create!(hash)
+   end
+end
+
 Given(/^I am on the ([^"]*)$/) do |page|
   case page
   when 'home page'
@@ -75,6 +81,7 @@ And(/^I fill in "([^"]*)" with "([^"]*)"$/) do |element, value|
 end
 
 Then(/^show me the page$/) do
+  save_and_open_page
 end
 
 And(/^I should see "([^"]*)"$/) do |string|

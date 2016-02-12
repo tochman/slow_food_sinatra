@@ -5,6 +5,12 @@ Feature: As a restuarnt owner
   dishes offered: in 3 be it Starter , Main Course  , Dessert
   dish price
 
+  Background:
+    Given the following categories exists
+    | name |
+    | Starter |
+    | Main Course |
+
   Scenario: list menu items
     Given I am registerd as admin
     Then I should be on the "home" page
@@ -17,9 +23,10 @@ Feature: As a restuarnt owner
     And I click on "Menu"
     Then I should be on the "Menu" page
     And I click on "Add Dish"
-    And I fill in "Name" with "Salad"
-    And I fill in "Category" with "Starter"
+    #Then show me the page
+    And I fill in "dish_name" with "Salad"
     And I fill in "Price" with "50"
+    And I fill in "category_name" with "Starter"
     And I click on "Add"
     Then I should be on the "menu" page
     And I should see "Successfully added Salad"
@@ -29,8 +36,8 @@ Feature: As a restuarnt owner
     And I click on "Menu"
     Then I should be on the "Menu" page
     And I click on "Add Dish"
-    And I fill in "Name" with "Salad"
-    And I fill in "Category" with "Starter"
+    And I fill in "dish_name" with "Salad"
+    And I fill in "category_name" with "Starter"
     And I fill in "Price" with "50"
     And I click on "Add"
     Then I should be on the "menu" page
