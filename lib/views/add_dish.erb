@@ -1,4 +1,4 @@
-<%if current_user.try(:admin)%>
+<!--%if current_user.try(:admin)%-->
 <%= form('/menu/add_dish', :post) %>
 
 
@@ -15,8 +15,8 @@
 
 
 <%= submit 'Add Dish' %>
-<%else%>
+<!--%else%-->
 <p>
-  Please, enjoy ordering and leave dish creation to our Chef! 
+  Please, enjoy ordering and leave dish creation to our Chef!
 </p>
-<%end%>
+<!--%end%-->

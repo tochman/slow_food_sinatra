@@ -17,7 +17,7 @@ Feature: As visitor or Admin,
     And I fill in "Password Confirmation" with "admin"
     And I click on "Create account"
     Then I should be on the "home" page
-    #Then show me the page
+    Then show me the page
     And I should see "Successfully created account for admin"
 
   Scenario: Register a User : visitor

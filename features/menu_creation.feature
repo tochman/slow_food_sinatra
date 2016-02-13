@@ -11,24 +11,12 @@ Feature: As a restuarnt owner
     | Starter |
     | Main Course |
 
-    Given the following dishes exists
-    | name     | category    | price |
-    | Salad    | Starter     | 30    |
-    | Soup     | Starter     | 40    |
-    | Fries    | Starter     | 35    |
-    | Pasta    | Main Course | 90    |
-    | Pizza    | Main Course | 85    |
-    | Kebab    | Main Course | 110   |
-    | Cake     | Dessert     | 50    |
-    | Fruit    | Dessert     | 60    |
-    | IceCream | Dessert     | 75    |
-
   Scenario: list menu items
     Given I am registerd as admin
     And I am on the home page
     Then I should be on the "home" page
     And I click on "Menu"
-    Then I should be on the "Menu" page
+    Then I should be on the "menu" page
     And I should see "You dont have any dishes yet"
 
   Scenario: Add a dish as admin
@@ -37,12 +25,12 @@ Feature: As a restuarnt owner
     And I click on "Menu"
     Then I should be on the "Menu" page
     And I click on "Add Dish"
-    And I fill in "dish_name" with "Salad"
+    And I fill in "dish_name" with "Bread"
     And I fill in "Price" with "50"
     And I fill in "category_name" with "Starter"
     And I click on "Add"
     Then I should be on the "menu" page
-    And I should see "Successfully added Salad"
+    And I should see "Successfully added Bread"
 
   Scenario: Add a dish as visitor
     Given I am registerd as visitor

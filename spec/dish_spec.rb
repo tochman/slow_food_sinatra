@@ -4,8 +4,8 @@ describe Dish do
   it { is_expected.to have_property :id }
   it { is_expected.to have_property :name }
   it { is_expected.to have_property :price }
-  #it { is_expected.to have_property :category }
+
   it { is_expected.to belong_to :user }
   it { is_expected.to belong_to :category }
-  it { is_expected.to belong_to :basket }
+  it { is_expected.to belong_to :basket_detail }
 end

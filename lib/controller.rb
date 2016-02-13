@@ -6,6 +6,7 @@ Dir[File.join(File.dirname(__FILE__), 'models', '*.rb')].each { |file| require f
 require_relative 'helpers/data_mapper'
 require_relative 'helpers/warden'
 require 'pry'
+require 'tilt/erb'
 
 class SlowFood < Sinatra::Base
   enable :sessions
@@ -41,7 +42,7 @@ class SlowFood < Sinatra::Base
     env['REQUEST_METHOD'] = 'POST'
   end
 
-   binding.pry
+   #binding.pry
   get '/' do
     erb :index
   end
@@ -118,27 +119,27 @@ class SlowFood < Sinatra::Base
     end
   end
 
-  namespace '/menu' do
-    get '/' do
-      @dishes = Dish.all
+
+    get '/menu' do
+    #  @dishes = Dish.all
       erb :menu
     end
 
-    post '/' do
-      category = Category.all(name:params[:category][:name])
-  menu = Basket.new(
-  category: category
-  )
-  binding.pry
+    post '/menu' do
+  #    category = Category.all(name:params[:category][:name])
+  #  menu = Basket.new(
+  # category: category
+  #  )
+  # binding.pry
     end
 
 
-    get '/add_dish' do
+    get '/menu/add_dish' do
       env['warden'].authenticate!
       erb :add_dish
     end
 
-    post '/add_dish' do
+    post '/menu/add_dish' do
       category = Category.first(name:params[:category][:name])
       dish = Dish.new(
         name: params[:dish][:name],
@@ -146,7 +147,7 @@ class SlowFood < Sinatra::Base
         category: category,
         user: user
       )
-
+#binding.pry
       d = dish.user
       if d.admin == true
         dish.save
@@ -155,7 +156,6 @@ class SlowFood < Sinatra::Base
         flash[:error] = 'Sorry!, you are not authorized to add dishes'
        end
          redirect '/'
-    end
   end
 
   get '/protected' do
