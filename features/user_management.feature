@@ -17,7 +17,6 @@ Feature: As visitor or Admin,
     And I fill in "Password Confirmation" with "admin"
     And I click on "Create account"
     Then I should be on the "home" page
-    Then show me the page
     And I should see "Successfully created account for admin"
 
   Scenario: Register a User : visitor
@@ -57,7 +56,6 @@ Feature: As visitor or Admin,
     And I fill in "Phone Number" with "0988002626"
     And I click on "Create account"
     Then I should be on the "home" page
-    #Then show me the page
     And I should see "Please add email adress"
 
   Scenario: Register a User : visitor without valid email

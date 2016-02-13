@@ -9,44 +9,64 @@ Given(/^I am registerd as visitor$/) do
 end
 
 Given(/^I am registerd and logged out admin$/) do
-  steps %q(
+  steps '
     Given I am registerd as admin
     And I am on the home page
     And I click on "Log_Out"
     Then I should be on the "home" page
     And I should see "Successfully logged out"
-  )
+  '
 end
 
 Given(/^I am registerd as admin$/) do
-  user = User.create(username: 'Admin', password: 'password', password_confirmation: 'password', admin: true)
+  user = User.create(username: 'Admin',
+                     password: 'password',
+                     password_confirmation: 'password',
+                     admin: true
+                     )
   login_as user
 end
 
 Given(/^I am registerd and logged out visitor$/) do
-  steps %q(
+  steps '
     Given I am registerd as visitor
     And I am on the home page
     And I click on "Log_Out"
     Then I should be on the "home" page
     And I should see "Successfully logged out"
-  )
+  '
 end
 
 Given(/^the following categories exists$/) do |table|
   table.hashes.each do |hash|
-     Category.create!(hash)
-   end
+    Category.create!(hash)
+  end
+end
+
+Given(/^the following users exists$/) do |table|
+  table.hashes.each do |hash|
+    user = User.new(username: hash[:username],
+                    password: hash[:password],
+                    password_confirmation: hash[:password_confirmation],
+                    admin: hash[:admin],
+                    email: hash[:email],
+                    phone_number: hash[:phone_number]
+                   )
+    user.save
+  end
 end
 
 Given(/^the following dishes exists$/) do |table|
- #binding.pry
   table.hashes.each do |hash|
     category = Category.first(name: hash[:category])
-    #binding.pry
-
-    Dish.create(name: hash[:name], price: hash[:price].to_i, category: category)
-   end
+    user = User.first(username: hash[:user])
+    # binding.pry
+    dish = Dish.new(name: hash[:name],
+                price: hash[:price].to_i,
+                category: category,
+                user: user)
+    dish.save
+  end
 end
 
 Given(/^I am on the ([^"]*)$/) do |page|

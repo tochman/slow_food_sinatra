@@ -121,15 +121,15 @@ class SlowFood < Sinatra::Base
 
 
     get '/menu' do
-    #  @dishes = Dish.all
+      @dishes = Dish.all
       erb :menu
     end
 
     post '/menu' do
-  #    category = Category.all(name:params[:category][:name])
-  #  menu = Basket.new(
-  # category: category
-  #  )
+     category = Category.all(name:params[:category][:name])
+    menu = Basket.new(
+   category: category
+    )
   # binding.pry
     end
 
@@ -147,7 +147,6 @@ class SlowFood < Sinatra::Base
         category: category,
         user: user
       )
-#binding.pry
       d = dish.user
       if d.admin == true
         dish.save

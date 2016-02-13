@@ -11,17 +11,17 @@ Feature: As a restuarnt visitor
   | Main Course |
   | Dessert |
 
-    Given the following dishes exists
-    | name     | category    | price |
-    | Salad    | Starter     | 30    |
-    | Soup     | Starter     | 40    |
-    | Fries    | Starter     | 35    |
-    | Pasta    | Main Course | 90    |
-    | Pizza    | Main Course | 85    |
-    | Kebab    | Main Course | 110   |
-    | Cake     | Dessert     | 50    |
-    | Fruit    | Dessert     | 60    |
-    | IceCream | Dessert     | 75    |
+  #  Given the following dishes exists
+  #  | name     | category    | price |
+  #  | Salad    | Starter     | 30    |
+  #  | Soup     | Starter     | 40    |
+  #  | Fries    | Starter     | 35    |
+  #  | Pasta    | Main Course | 90    |
+  #  | Pizza    | Main Course | 85    |
+  #  | Kebab    | Main Course | 110   |
+  #  | Cake     | Dessert     | 50    |
+  #  | Fruit    | Dessert     | 60    |
+  #  | IceCream | Dessert     | 75    |
 
   Scenario: list menu items
     Given I am registerd as admin
@@ -29,5 +29,4 @@ Feature: As a restuarnt visitor
     Then I should be on the "home" page
     And I click on "Menu"
     Then I should be on the "Menu" page
-    Then show me the page
     And I should see "You dont have any dishes yet"

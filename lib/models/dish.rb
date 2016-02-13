@@ -5,10 +5,7 @@ class Dish
   property :name, String, length: 128, unique: true, required: true
   property :price, Integer, required: true
 
-
   belongs_to :user
   belongs_to :category
-  #belongs_to :basket_detail, default: false
-
-
+  # belongs_to :basket_detail, default: false
 end

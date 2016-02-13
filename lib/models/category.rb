@@ -5,5 +5,4 @@ class Category
   property :name, String, length: 128, unique: true, required: true
 
   has n, :dishes, through: Resource
-
 end
