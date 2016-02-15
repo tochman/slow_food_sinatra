@@ -23,7 +23,7 @@ Given(/^I am registerd as admin$/) do
                      password: 'password',
                      password_confirmation: 'password',
                      admin: true
-                     )
+                    )
   login_as user
 end
 
@@ -38,16 +38,16 @@ Given(/^I am registerd and logged out visitor$/) do
 end
 
 Given(/^I am logged in as Visitor$/) do
-steps '
-  And I am on the home page
-  And I click on "Log_In"
-  Then I should be on the "login" page
-  And I fill in "user[username]" with "Visitor"
-  And I fill in "user[password]" with "password"
-  And I click on "Log In"
-  Then I should be on the "home" page
-  And I should see "Successfully logged in Visitor"
-  '
+  steps '
+    And I am on the home page
+    And I click on "Log_In"
+    Then I should be on the "login" page
+    And I fill in "user[username]" with "Visitor"
+    And I fill in "user[password]" with "password"
+    And I click on "Log In"
+    Then I should be on the "home" page
+    And I should see "Successfully logged in Visitor"
+    '
 end
 
 Given(/^the following categories exists$/) do |table|
@@ -73,8 +73,8 @@ Given(/^the following dishes exists$/) do |table|
   table.hashes.each do |hash|
     category = Category.first(name: hash[:category])
     user = User.first(username: hash[:user])
-     #binding.pry
-    dish = Dish.new(name: hash[:name],price: hash[:price].to_i,category: category, user: user)
+    # binding.pry
+    dish = Dish.new(name: hash[:name], price: hash[:price].to_i, category: category, user: user)
     dish.save
   end
 end
@@ -110,7 +110,7 @@ And(/^I fill in "([^"]*)" with "([^"]*)"$/) do |element, value|
 end
 
 Then(/^show me the page$/) do
-  save_and_open_page
+   save_and_open_page
 end
 
 And(/^I should see "([^"]*)"$/) do |string|
@@ -118,7 +118,5 @@ And(/^I should see "([^"]*)"$/) do |string|
 end
 
 And(/^there are no dishes in the system$/) do
-  Dish.all.each do |dish|
-    dish.destroy
-  end
+  Dish.all.each(&:destroy)
 end

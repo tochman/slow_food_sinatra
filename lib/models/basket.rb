@@ -1,6 +1,5 @@
 class Basket
   include DataMapper::Resource
-  #attr_accessor :total
 
   property :id, Serial, key: true, required: false
   property :created_at, DateTime
@@ -13,11 +12,9 @@ class Basket
 
   def total
     @total = 0
-    self.basket_items.each do |item|
+    basket_items.each do |item|
       @total += (item.dish.price * item.qty)
     end
     @total
   end
-
-
 end

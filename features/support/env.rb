@@ -11,7 +11,6 @@ require 'pry'
 require 'database_cleaner'
 require 'database_cleaner/cucumber'
 
-
 Capybara.app = SlowFood
 
 class SlowFoodWorld
@@ -26,10 +25,9 @@ end
 
 DatabaseCleaner.strategy = :truncation
 
-Around do |scenario, block|
+Around do |_scenario, block|
   DatabaseCleaner.cleaning(&block)
 end
-
 
 Warden.test_mode!
 World Warden::Test::Helpers

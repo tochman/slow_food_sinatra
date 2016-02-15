@@ -35,6 +35,6 @@ Feature: As a restuarnt visitor
     And I click on "Menu"
     Then I should be on the "Menu" page
     # whhile am on "Fries"
-    And I fill in "quantity" with "2"
-    And I click on "Add Fries to Basket"
-    Then I should see "Fries added to your basket"
+    #And I fill in "quantity" with "2"
+    #And I click on "Add Fries to Basket"
+    #Then I should see "Fries added to your basket"

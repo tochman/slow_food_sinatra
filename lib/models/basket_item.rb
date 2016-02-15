@@ -4,6 +4,6 @@ class BasketItem
   property :id, Serial, key: true, required: false
   property :qty, Integer
   property :dish, Object
-  belongs_to :basket
 
+  belongs_to :basket
 end

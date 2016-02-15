@@ -126,11 +126,7 @@ class SlowFood < Sinatra::Base
   end
 
   post '/menu' do
-    #category = Category.all(name: params[:category][:name])
-    #menu = Basket.new(
-    #  category: category
-    #)
-    # binding.pry
+
   end
 
   get '/menu/add_dish' do
