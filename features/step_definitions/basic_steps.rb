@@ -116,3 +116,9 @@ end
 And(/^I should see "([^"]*)"$/) do |string|
   expect(page).to have_text string
 end
+
+And(/^there are no dishes in the system$/) do
+  Dish.all.each do |dish|
+    dish.destroy
+  end
+end

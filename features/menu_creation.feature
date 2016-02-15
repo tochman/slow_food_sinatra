@@ -7,33 +7,35 @@ Feature: As a restuarnt owner
 
   Background:
     Given the following users exists
-      | username | password | password_confirmation | admin | email | phone_number |
-      | Mazen | same | same | true | mine@any.com | 028756778 |
-      | Thomas | shme | shme | true | youe@any.com | 098756678 |
-      | Rich | saje | saje | false | addr@any.com | 098734778 |
+      | username | password | password_confirmation | admin | email        | phone_number |
+      | Mazen    | same     | same                  | true  | mine@any.com | 028756778    |
+      | Thomas   | shme     | shme                  | true  | youe@any.com | 098756678    |
+      | Rich     | saje     | saje                  | false | addr@any.com | 098734778    |
     Given the following categories exists
-      | name |
-      | Starter |
+      | name        |
+      | Starter     |
       | Main Course |
-      | Dessert |
+      | Dessert     |
     Given the following dishes exists
-      | name | category | price | user |
-      | Salad | Starter | 30 | Mazen |
-      | Soup | Starter | 40 | Mazen |
-      | Fries | Starter | 35 | Mazen |
-      | Pasta | Main Course | 90 | Mazen |
-      | Pizza | Main Course | 85 | Thomas |
-      | Kebab | Main Course | 110 | Thomas |
-      | Cake | Dessert | 50 | Thomas |
-      | Fruit | Dessert | 60 | Thomas |
-      | IceCream | Dessert | 75 | Mazen |
+      | name     | category    | price | user   |
+      | Salad    | Starter     | 30    | Mazen  |
+      | Soup     | Starter     | 40    | Mazen  |
+      | Fries    | Starter     | 35    | Mazen  |
+      | Pasta    | Main Course | 90    | Mazen  |
+      | Pizza    | Main Course | 85    | Thomas |
+      | Kebab    | Main Course | 110   | Thomas |
+      | Cake     | Dessert     | 50    | Thomas |
+      | Fruit    | Dessert     | 60    | Thomas |
+      | IceCream | Dessert     | 75    | Mazen  |
 
   Scenario: list menu items before storing dishes
     Given I am registerd as admin
+    And there are no dishes in the system
     And I am on the home page
     Then I should be on the "home" page
     And I click on "Menu"
     Then I should be on the "menu" page
+    Then show me the page
     And I should see "You dont have any dishes yet"
 
   Scenario: menu visible for : admin

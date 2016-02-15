@@ -1,14 +1,14 @@
-<% if @dishes %>
-<% @dishes.each do |dish| %>
-<h2><%= dish.name %></h2>
-<p>
-  <%= dish.price %>
-</p>
-<!--a href="/menu/basket">Add to Basket</a-->
-</p>
-<% end %>
+<% if @dishes.any? %>
+  <% @dishes.each do |dish| %>
+    <h2><%= dish.name %></h2>
+    <p>
+      <%= dish.price %>
+    </p>
+    <!--a href="/menu/basket">Add to Basket</a-->
+    </p>
+  <% end %>
 <% else %>
-<h2>You dont have any dishes yet</h2>
+  <h2>You dont have any dishes yet</h2>
 <% end %>
 <a href="/menu/add_dish">Add Dish</a>
 </p>
