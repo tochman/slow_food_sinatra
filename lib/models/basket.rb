@@ -1,13 +1,23 @@
-#class Basket
-#  include DataMapper::Resource
+class Basket
+  include DataMapper::Resource
+  #attr_accessor :total
 
-#  property :id, Serial, key: true, required: false
-#  property :qty, Integer, default: 1
+  property :id, Serial, key: true, required: false
+  property :created_at, DateTime
+  property :created_on, Date
+  property :updated_at, DateTime
+  property :updated_on, Date
 
-  #has n, :dishes, via: adding_to_basket
-  # belongs_to :basket
+  has n, :basket_items
+  belongs_to :user
 
-  #def adding_to_basket(dish)
+  def total
+    @total = 0
+    self.basket_items.each do |item|
+      @total += (item.dish.price * item.qty)
+    end
+    @total
+  end
 
-  #end
-#end
+
+end
