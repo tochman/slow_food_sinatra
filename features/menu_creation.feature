@@ -58,17 +58,15 @@ Feature: As a restuarnt owner
     And I should see "Soup"
     And I should see "40"
 
-    Scenario: menu visible for : non registered
-      Given I am on the home page
-      Then I should be on the "home" page
-Then show me the page
-      And I click on "Menu"
-      Then I should be on the "menu" page
-      And I should see "Salad"
-      And I should see "30"
-      And I should see "Soup"
-      And I should see "40"
-
+  Scenario: menu visible for : non registered
+    Given I am on the home page
+    Then I should be on the "home" page
+    And I click on "Menu"
+    Then I should be on the "menu" page
+    And I should see "Salad"
+    And I should see "30"
+    And I should see "Soup"
+    And I should see "40"
 
   Scenario: Add a dish as admin
     Given I am registerd as admin

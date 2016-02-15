@@ -14,7 +14,6 @@ class User
                            }
   property :phone_number, Text
   has n, :dishes, through: Resource
-  # has n, :baskets, through: Resource
 
   validates_presence_of :email, if: ->(t) { t.admin == false }, message: 'Please add email adress'
   validates_presence_of :phone_number, if: ->(t) { t.admin == false }, message: 'Please provide phone number'

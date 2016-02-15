@@ -42,7 +42,7 @@ class SlowFood < Sinatra::Base
     env['REQUEST_METHOD'] = 'POST'
   end
 
-   #binding.pry
+  # binding.pry
   get '/' do
     erb :index
   end
@@ -78,8 +78,8 @@ class SlowFood < Sinatra::Base
         admin: true
       )
       begin user.save
-        flash[:success] = "Successfully created account for #{user.username}"
-        redirect '/'
+            flash[:success] = "Successfully created account for #{user.username}"
+            redirect '/'
       rescue
         flash[:error] = user.errors.full_messages.join(',')
       end
@@ -94,9 +94,9 @@ class SlowFood < Sinatra::Base
         phone_number: params[:user][:phone_number]
       )
       begin user.save
-        env['warden'].authenticate!
-        flash[:success] = "Successfully created account for #{current_user.username}"
-        redirect '/'
+            env['warden'].authenticate!
+            flash[:success] = "Successfully created account for #{current_user.username}"
+            redirect '/'
       rescue
         flash[:error] = user.errors.full_messages.join(',')
       end
@@ -119,42 +119,40 @@ class SlowFood < Sinatra::Base
     end
   end
 
+  get '/menu' do
+    @dishes = Dish.all
+    erb :menu
+  end
 
-    get '/menu' do
-      @dishes = Dish.all
-      erb :menu
-    end
+  post '/menu' do
+    #category = Category.all(name: params[:category][:name])
+    #menu = Basket.new(
+    #  category: category
+    #)
+    # binding.pry
+  end
 
-    post '/menu' do
-     category = Category.all(name:params[:category][:name])
-    menu = Basket.new(
-   category: category
+  get '/menu/add_dish' do
+    env['warden'].authenticate!
+    erb :add_dish
+  end
+
+  post '/menu/add_dish' do
+    category = Category.first(name: params[:category][:name])
+    dish = Dish.new(
+      name: params[:dish][:name],
+      price: params[:dish][:price],
+      category: category,
+      user: user
     )
-  # binding.pry
-    end
-
-
-    get '/menu/add_dish' do
-      env['warden'].authenticate!
-      erb :add_dish
-    end
-
-    post '/menu/add_dish' do
-      category = Category.first(name:params[:category][:name])
-      dish = Dish.new(
-        name: params[:dish][:name],
-        price: params[:dish][:price],
-        category: category,
-        user: user
-      )
-      d = dish.user
-      if d.admin == true
-        dish.save
-        flash[:success] = "Successfully added #{dish.name}"
-      else
-        flash[:error] = 'Sorry!, you are not authorized to add dishes'
-       end
-         redirect '/'
+    d = dish.user
+    if d.admin == true
+      dish.save
+      flash[:success] = "Successfully added #{dish.name}"
+    else
+      flash[:error] = 'Sorry!, you are not authorized to add dishes'
+     end
+    redirect '/'
   end
 
   get '/protected' do

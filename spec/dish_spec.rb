@@ -7,5 +7,4 @@ describe Dish do
 
   it { is_expected.to belong_to :user }
   it { is_expected.to belong_to :category }
-  it { is_expected.to belong_to :basket_detail }
 end

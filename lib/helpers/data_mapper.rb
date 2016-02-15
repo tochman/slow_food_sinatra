@@ -12,5 +12,9 @@ if ENV['RACK_ENV'] != 'test'
     Category.first_or_create(name: category)
   end
   user = User.first(username: 'Admin')
-  User.create(username: 'Admin', password: 'password', password_confirmation: 'password', admin: true) unless user
+  User.create(username: 'Admin',
+              password: 'password',
+              password_confirmation: 'password',
+              admin: true
+              ) unless user
 end

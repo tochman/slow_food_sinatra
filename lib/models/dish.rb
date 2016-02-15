@@ -7,5 +7,5 @@ class Dish
 
   belongs_to :user
   belongs_to :category
-  # belongs_to :basket_detail, default: false
+  #belongs_to :basket, via: adding_to_basket
 end

@@ -37,6 +37,19 @@ Given(/^I am registerd and logged out visitor$/) do
   '
 end
 
+Given(/^I am logged in as Visitor$/) do
+steps '
+  And I am on the home page
+  And I click on "Log_In"
+  Then I should be on the "login" page
+  And I fill in "user[username]" with "Visitor"
+  And I fill in "user[password]" with "password"
+  And I click on "Log In"
+  Then I should be on the "home" page
+  And I should see "Successfully logged in Visitor"
+  '
+end
+
 Given(/^the following categories exists$/) do |table|
   table.hashes.each do |hash|
     Category.create!(hash)
@@ -60,11 +73,8 @@ Given(/^the following dishes exists$/) do |table|
   table.hashes.each do |hash|
     category = Category.first(name: hash[:category])
     user = User.first(username: hash[:user])
-    # binding.pry
-    dish = Dish.new(name: hash[:name],
-                price: hash[:price].to_i,
-                category: category,
-                user: user)
+     #binding.pry
+    dish = Dish.new(name: hash[:name],price: hash[:price].to_i,category: category, user: user)
     dish.save
   end
 end
