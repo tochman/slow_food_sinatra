@@ -1,10 +1,11 @@
 <% if @dishes.any? %>
-<% @dishes.each do |dish| %>
-<h2><%= dish.name %></h2>
-<p>
-  <%= dish.price %>
+  <% group = @dishes.group_by(&:category_id)%>
+  <%group.each do |category|%>
+
+  <h2><%= category%></h2>
+  <% end %>
+    <% end %>
 </p>
-<% end %>
 <% else %>
 <h2>You dont have any dishes yet</h2>
 <% end %>

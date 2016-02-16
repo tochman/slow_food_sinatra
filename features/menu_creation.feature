@@ -35,7 +35,7 @@ Feature: As a restuarnt owner
     Then I should be on the "home" page
     And I click on "Menu"
     Then I should be on the "menu" page
-    Then show me the page
+    #Then show me the page
     And I should see "You dont have any dishes yet"
 
   Scenario: menu visible for : admin
@@ -44,6 +44,7 @@ Feature: As a restuarnt owner
     Then I should be on the "home" page
     And I click on "Menu"
     Then I should be on the "menu" page
+    Then show me the page
     And I should see "Salad"
     And I should see "30"
     And I should see "Soup"
