@@ -126,10 +126,21 @@ And(/^I select "([^"]*)" from "([^"]*)"$/) do |option, field|
   select option, from: field
 end
 
-And(/^I fill in "([^"]*)" with "([^"]*)" for "([^"]*)"$/) do |arg1, arg2, arg3|
-  pending
+And(/^I fill in "([^"]*)" with "([^"]*)" for "([^"]*)"$/) do |element, value, dish|
+within("#{dish.id}") do
+#within("//li[@id='dish']") do
+  #within(option, visible: false) do
+#within('dish', :visible => false) do
+fill_in(element, with: value)
+end
 end
 
-And(/^I click on "([^"]*)" for "([^"]*)"$/) do |arg1, arg2|
-  pending
+And(/^I click on "([^"]*)" for "([^"]*)"$/) do |element, dish|
+ #binding.pry
+  within("#{dish.id}") do
+  #expect(page).to have_text dish
+#binding.pry
+  #within(expect(page).to have_text dish) do
+  click_link_or_button element
+  end
 end
