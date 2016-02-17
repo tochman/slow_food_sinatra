@@ -143,10 +143,9 @@ class SlowFood < Sinatra::Base
       name: params[:dish][:name],
       price: params[:dish][:price],
       category: category,
-      user: user
+      user: current_user
     )
-    d = dish.user
-    if d.admin == true
+    if current_user.admin == true
       dish.save
       flash[:success] = "Successfully added #{dish.name}"
     else

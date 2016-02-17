@@ -120,3 +120,8 @@ end
 And(/^there are no dishes in the system$/) do
   Dish.all.each(&:destroy)
 end
+
+
+And(/^I select "([^"]*)" from "([^"]*)"$/) do |option, field|
+  select option, from: field
+end

@@ -79,7 +79,7 @@ Feature: As a restuarnt owner
     And I click on "Add Dish"
     And I fill in "dish_name" with "Bread"
     And I fill in "Price" with "50"
-    And I fill in "category_name" with "Starter"
+    And I select "Starter" from "dish_category"
     And I click on "Add"
     Then I should be on the "menu" page
     And I should see "Successfully added Bread"
