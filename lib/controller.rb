@@ -3,7 +3,7 @@ require 'bundler'
 Bundler.require
 require 'sinatra/form_helpers'
 Dir[File.join(File.dirname(__FILE__), 'models', '*.rb')].each { |file| require file }
-require 'dm-timestamps'
+#require 'dm-timestamps'
 require_relative 'helpers/data_mapper'
 require_relative 'helpers/warden'
 require_relative 'helpers/menu_helpers'

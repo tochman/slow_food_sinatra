@@ -3,7 +3,7 @@ class BasketItem
 
   property :id, Serial, key: true, required: false
   property :qty, Integer
-  property :dish, Object
 
+  has 1, :dish, through: Resource
   belongs_to :basket
 end
