@@ -138,14 +138,13 @@ class SlowFood < Sinatra::Base
   end
 
   post '/menu/add_dish' do
-    category = Category.first(name: params[:category][:name])
+    category = Category.get(params[:dish][:category])
     dish = Dish.new(
       name: params[:dish][:name],
       price: params[:dish][:price],
       category: category,
       user: user
     )
-    binding.pry
     d = dish.user
     if d.admin == true
       dish.save
@@ -158,7 +157,6 @@ class SlowFood < Sinatra::Base
 
   get '/protected' do
     env['warden'].authenticate!
-
     erb :protected
   end
 end
