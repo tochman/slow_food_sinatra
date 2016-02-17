@@ -19,6 +19,6 @@ class Basket
   end
 
   def add_item(obj, qty)
-    self.basket_items.create(dish:obj, qty: qty)
+    BasketItem.create(dish:obj, qty: qty, basket: self)
   end
 end
