@@ -125,3 +125,11 @@ end
 And(/^I select "([^"]*)" from "([^"]*)"$/) do |option, field|
   select option, from: field
 end
+
+And(/^I fill in "([^"]*)" with "([^"]*)" for "([^"]*)"$/) do |arg1, arg2, arg3|
+  pending
+end
+
+And(/^I click on "([^"]*)" for "([^"]*)"$/) do |arg1, arg2|
+  pending
+end

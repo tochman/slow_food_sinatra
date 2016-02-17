@@ -3,7 +3,11 @@
   <% @dishes.keys.each do |key| %>
     <h3><%= get_category_name(key) %></h3>
     <% @dishes[key].each do |dish| %>
-      <p><%= dish.name %> - <%= dish.price %>kr</p>
+      <div id="<%= dish.id %>">
+        <p><%= dish.name %> - <%= dish.price %>kr</p>
+        
+      </div>
+
     <% end %>
   <% end %>
 
