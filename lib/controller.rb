@@ -6,6 +6,8 @@ Dir[File.join(File.dirname(__FILE__), 'models', '*.rb')].each { |file| require f
 require 'dm-timestamps'
 require_relative 'helpers/data_mapper'
 require_relative 'helpers/warden'
+require_relative 'helpers/menu_helpers'
+
 require 'pry'
 require 'tilt/erb'
 
@@ -15,6 +17,7 @@ class SlowFood < Sinatra::Base
   register Sinatra::Contrib
   register Sinatra::Warden
   helpers Sinatra::FormHelpers
+  helpers MenuHelpers
   set :session_secret, 'supersecret'
 
   use Warden::Manager do |config|
@@ -121,7 +124,7 @@ class SlowFood < Sinatra::Base
   end
 
   get '/menu' do
-    @dishes = Dish.all
+    @dishes = Dish.all.group_by(&:category_id)
     erb :menu
   end
 
@@ -142,6 +145,7 @@ class SlowFood < Sinatra::Base
       category: category,
       user: user
     )
+    binding.pry
     d = dish.user
     if d.admin == true
       dish.save
