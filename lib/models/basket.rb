@@ -17,4 +17,8 @@ class Basket
     end
     @total
   end
+
+  def add_item(obj, qty)
+    self.basket_items.create(dish:obj, qty: qty)
+  end
 end
