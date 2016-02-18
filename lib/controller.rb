@@ -128,7 +128,7 @@ class SlowFood < Sinatra::Base
     erb :menu
   end
 
-  post '/menu' do
+  post '/menu/add_to_basket' do
     dish = Dish.get(params[:basket_item][:id])
 
     if session[:b_id]
@@ -137,10 +137,21 @@ class SlowFood < Sinatra::Base
       basket = Basket.create(user: current_user)
       session[:b_id] = basket.id
     end
+    binding.pry
+
     BasketItem.create(qty: params[:basket_item][:qty].to_i, dish: dish, basket: basket)
+
     flash[:success] = "#{dish.name} added to your basket"
     redirect '/menu'
   end
+
+  get '/menu/basket' do
+    env['warden'].authenticate!
+    @basket = Basket.get(session[:b_id])
+    erb :basket
+  end
+
+
 
   post '/check_out' do
 

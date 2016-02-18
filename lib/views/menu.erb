@@ -8,7 +8,7 @@
           -
           <%= dish.price %>kr</p>
         <% if current_user %>
-          <form action="/menu" method="post">
+          <form action="/menu/add_to_basket" method="post">
             <input type="hidden" name="basket_item[id]" , value="<%= dish.id %>"/>
             <label for="">Quantity</label>
             <input type="number" name="basket_item[qty]"/>
@@ -16,8 +16,13 @@
             <!--%binding.pry%-->
           </form>
           </div>
+          <% else %>
+            <h2>Please log in to enjoy ordering!</h2>
+
         <% end %>
+
     <% end %>
+
   <% end %>
 
 <% else %>

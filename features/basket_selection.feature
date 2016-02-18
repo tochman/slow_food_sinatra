@@ -38,3 +38,11 @@ Feature: As a restuarnt visitor
     And I fill in "basket_item[qty]" with "2" for "Fries"
     And I click on "Add to basket" for "Fries"
     Then I should see "Fries added to your basket"
+
+    Scenario: Add dish to basket without being logged in
+      Given I am not registerd at all 
+      And I am on the home page
+      And I click on "Menu"
+      Then I should be on the "Menu" page
+      Then I should see "Fries"
+      Then I should see "Please log in to enjoy ordering!"

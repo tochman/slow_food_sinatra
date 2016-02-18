@@ -50,6 +50,10 @@ Given(/^I am logged in as Visitor$/) do
     '
 end
 
+Given(/^I am not registerd at all$/) do
+  User.all.each(&:destroy)
+end
+
 Given(/^the following categories exists$/) do |table|
   table.hashes.each do |hash|
     Category.create!(hash)
