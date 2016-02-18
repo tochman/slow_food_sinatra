@@ -1,32 +1,32 @@
 <% if @dishes.any? %>
 
-  <% @dishes.keys.each do |key| %>
-    <h3><%= get_category_name(key) %></h3>
-    <% @dishes[key].each do |dish| %>
-      <div id="<%= dish.id %>">
-        <p><%= dish.name %>
-          -
-          <%= dish.price %>kr</p>
-        <% if current_user %>
-          <form action="/menu/add_to_basket" method="post">
-            <input type="hidden" name="basket_item[id]" , value="<%= dish.id %>"/>
-            <label for="">Quantity</label>
-            <input type="number" name="basket_item[qty]"/>
-            <input type="submit" value="Add to basket"/>
-            <!--%binding.pry%-->
-          </form>
-          </div>
-          <% else %>
-            <h2>Please log in to enjoy ordering!</h2>
+<% @dishes.keys.each do |key| %>
+<h3><%= get_category_name(key) %></h3>
+<% @dishes[key].each do |dish| %>
+<div id="<%= dish.id %>">
+  <p><%= dish.name %>
+    -
+    <%= dish.price %>kr</p>
+  <% if current_user %>
+  <form action="/menu/add_to_basket" method="post">
+    <input type="hidden" name="basket_item[id]" , value="<%= dish.id %>"/>
+    <label for="">Quantity</label>
+    <input type="number" name="basket_item[qty]"/>
+    <input type="submit" value="Add to basket"/>
+    <!--%binding.pry%-->
+  </form>
+</div>
+<% else %>
+<h2>Please log in to enjoy ordering!</h2>
 
-        <% end %>
+<% end %>
 
-    <% end %>
+<% end %>
 
-  <% end %>
+<% end %>
 
 <% else %>
-  <h2>You dont have any dishes yet</h2>
+<h2>You dont have any dishes yet</h2>
 <% end %>
 <a href="/check_out">View basket</a>
 <a href="/menu/add_dish">Add Dish</a>
