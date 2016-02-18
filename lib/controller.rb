@@ -3,7 +3,7 @@ require 'bundler'
 Bundler.require
 require 'sinatra/form_helpers'
 Dir[File.join(File.dirname(__FILE__), 'models', '*.rb')].each { |file| require file }
-#require 'dm-timestamps'
+# require 'dm-timestamps'
 require_relative 'helpers/data_mapper'
 require_relative 'helpers/warden'
 require_relative 'helpers/menu_helpers'
@@ -137,7 +137,6 @@ class SlowFood < Sinatra::Base
       basket = Basket.create(user: current_user)
       session[:b_id] = basket.id
     end
-    binding.pry
 
     BasketItem.create(qty: params[:basket_item][:qty].to_i, dish: dish, basket: basket)
 
@@ -145,18 +144,35 @@ class SlowFood < Sinatra::Base
     redirect '/menu'
   end
 
-  get '/menu/basket' do
+  get '/check_out' do
     env['warden'].authenticate!
     @basket = Basket.get(session[:b_id])
     erb :basket
   end
 
-
+  post '/cancel_order' do
+    binding.pry
+    @basket = Basket.get(session[:b_id])
+    session.tap { |hs| hs.delete(:b_id) }
+    flash[:success] = 'Your order was cancelled'
+    redirect '/menu'
+  end
 
   post '/check_out' do
-
-    session.tap { |hs| hs.delete(:b_id) }
+    binding.pry
+    @basket = Basket.get(session[:b_id])
+    erb :order_confirm
   end
+
+  # post '/check_out' do
+  # binding.pry
+  #  @basket = Basket.get(session[:b_id])
+
+  #  #set delivery Time
+  # set status
+  # session.tap { |hs| hs.delete(:b_id) }
+  #  redirect '/'
+  # end
 
   get '/menu/add_dish' do
     env['warden'].authenticate!

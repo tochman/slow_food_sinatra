@@ -1,0 +1,30 @@
+<% if current_user %>
+<% @basket.basket_items.each do |item |%>
+<div>
+  <p><%= item.qty %>
+    Dishes of
+    <%= item.dish.name %>, price per each:
+    <%= item.dish.price %>kr</p>
+  <% end %>
+  <div>
+    <p>Your order total is
+      <%= @basket.total %>
+      kr</p>
+    <%= form('/check_out', :post) %>
+
+    <% fieldset(:basket) do |f| %>
+    <%= f.hidden(:basket_id, value: @basket.id) %>
+    <%#= f.hidden(:basket_id) %>
+    <%#= f.input(value: @basket.id) %>
+
+    <input type="submit" value="Finalize order"/>
+    <input type="button" value="Cancel order"/>
+    <% end %>
+
+
+   <% else %>
+    <p>
+      Please log in to enjoy ordering!
+    </p>
+
+    <% end %>
