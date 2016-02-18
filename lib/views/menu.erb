@@ -1,19 +1,23 @@
 <% if @dishes.any? %>
 
-  <% @dishes.keys.each do |key| %>
-    <h3><%= get_category_name(key) %></h3>
-    <% @dishes[key].each do |dish| %>
-      <div id="<%= dish.id %>">
-        <p><%= dish.name %> - <%= dish.price %>kr</p>
-        <p>Quantity:
-        <input type="qty" name="BasketItem[qty]" id="<%= dish.id %>"/></p>
-        <input type="add_item" value="Add to basket" id="<%= dish.id %>"/>
-      </div>
-
-    <% end %>
-  <% end %>
+<% @dishes.keys.each do |key| %>
+<h3><%= get_category_name(key) %></h3>
+<% @dishes[key].each do |dish| %>
+<div id="<%= dish.id %>">
+  <p><%= dish.name %>
+    -
+    <%= dish.price %>kr</p>
+  <form action="/menu" method="post">
+    <p>Quantity:
+      <input type="number" name="BasketItem[qty]"/></p>
+    <input type="submit" value="Add to basket"/>
+    <!--%binding.pry%-->
+  </div>
+</form>
+<% end %>
+<% end %>
 
 <% else %>
-  <h2>You dont have any dishes yet</h2>
+<h2>You dont have any dishes yet</h2>
 <% end %>
 <a href="/menu/add_dish">Add Dish</a>

@@ -110,7 +110,6 @@ And(/^I fill in "([^"]*)" with "([^"]*)"$/) do |element, value|
 end
 
 Then(/^show me the page$/) do
-   save_and_open_page
 end
 
 And(/^I should see "([^"]*)"$/) do |string|
@@ -121,26 +120,29 @@ And(/^there are no dishes in the system$/) do
   Dish.all.each(&:destroy)
 end
 
-
 And(/^I select "([^"]*)" from "([^"]*)"$/) do |option, field|
   select option, from: field
 end
 
 And(/^I fill in "([^"]*)" with "([^"]*)" for "([^"]*)"$/) do |element, value, dish|
-within("#{dish.id}") do
-#within("//li[@id='dish']") do
-  #within(option, visible: false) do
-#within('dish', :visible => false) do
-fill_in(element, with: value)
-end
+#binding.pry
+  #dish = Dish.get(params[:dish][:dish_name])
+  #id = dish.id
+  #within("##{id})") do
+    within("#1") do
+    # within("//li[@id='dish']") do
+    # within(option, visible: false) do
+    # within('dish', :visible => false) do
+    fill_in(element, with: value)
+  end
 end
 
 And(/^I click on "([^"]*)" for "([^"]*)"$/) do |element, dish|
- #binding.pry
-  within("#{dish.id}") do
-  #expect(page).to have_text dish
-#binding.pry
-  #within(expect(page).to have_text dish) do
-  click_link_or_button element
+  # binding.pry
+  within(dish.id.to_s) do
+    # expect(page).to have_text dish
+    # binding.pry
+    # within(expect(page).to have_text dish) do
+    click_link_or_button element
   end
 end

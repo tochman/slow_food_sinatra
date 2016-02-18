@@ -129,7 +129,10 @@ class SlowFood < Sinatra::Base
   end
 
   post '/menu' do
-
+    dish = Dish.get(params[:dish][:name])
+     basket_item = BasketItem.new(qty: params[:basket_item][:qty],dish: dish, basket: 1)
+    flash[:success] = "#{dish.name} added to your basket"
+    redirect '/menu'
   end
 
   get '/menu/add_dish' do
