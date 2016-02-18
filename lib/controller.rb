@@ -129,10 +129,22 @@ class SlowFood < Sinatra::Base
   end
 
   post '/menu' do
-    dish = Dish.get(params[:dish][:name])
-     basket_item = BasketItem.new(qty: params[:basket_item][:qty],dish: dish, basket: 1)
+    dish = Dish.get(params[:basket_item][:id])
+
+    if session[:b_id]
+      basket = Basket.get(session[:b_id])
+    else
+      basket = Basket.create(user: current_user)
+      session[:b_id] = basket.id
+    end
+    BasketItem.create(qty: params[:basket_item][:qty].to_i, dish: dish, basket: basket)
     flash[:success] = "#{dish.name} added to your basket"
     redirect '/menu'
+  end
+
+  post '/check_out' do
+
+    session.tap { |hs| hs.delete(:b_id) }
   end
 
   get '/menu/add_dish' do

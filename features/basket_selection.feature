@@ -35,7 +35,6 @@ Feature: As a restuarnt visitor
     And I click on "Menu"
     Then I should be on the "Menu" page
     Then I should see "Fries"
-    Then show me the page
-    And I fill in "BasketItem[qty]" with "2" for "Fries"
-    And I click on "Add to Basket" for "Fries"
+    And I fill in "basket_item[qty]" with "2" for "Fries"
+    And I click on "Add to basket" for "Fries"
     Then I should see "Fries added to your basket"

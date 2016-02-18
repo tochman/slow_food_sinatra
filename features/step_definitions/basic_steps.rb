@@ -23,7 +23,7 @@ Given(/^I am registerd as admin$/) do
                      password: 'password',
                      password_confirmation: 'password',
                      admin: true
-                    )
+  )
   login_as user
 end
 
@@ -64,7 +64,7 @@ Given(/^the following users exists$/) do |table|
                     admin: hash[:admin],
                     email: hash[:email],
                     phone_number: hash[:phone_number]
-                   )
+    )
     user.save
   end
 end
@@ -81,8 +81,8 @@ end
 
 Given(/^I am on the ([^"]*)$/) do |page|
   case page
-  when 'home page'
-    visit '/'
+    when 'home page'
+      visit '/'
   end
 end
 
@@ -92,16 +92,16 @@ end
 
 Then(/^I should be on the "([^"]*)" page$/) do |page|
   case page
-  when 'Register'
-    expect(current_path).to eq '/auth/register'
-  when 'Register Admin'
-    expect(current_path).to eq '/auth/admin/register'
-  when 'login'
-    expect(current_path).to eq '/auth/login'
-  when 'Menu'
-    expect(current_path).to eq '/menu'
-  when 'home page'
-    expect(current_path).to eq '/'
+    when 'Register'
+      expect(current_path).to eq '/auth/register'
+    when 'Register Admin'
+      expect(current_path).to eq '/auth/admin/register'
+    when 'login'
+      expect(current_path).to eq '/auth/login'
+    when 'Menu'
+      expect(current_path).to eq '/menu'
+    when 'home page'
+      expect(current_path).to eq '/'
   end
 end
 
@@ -110,6 +110,7 @@ And(/^I fill in "([^"]*)" with "([^"]*)"$/) do |element, value|
 end
 
 Then(/^show me the page$/) do
+  save_and_open_page
 end
 
 And(/^I should see "([^"]*)"$/) do |string|
@@ -125,24 +126,15 @@ And(/^I select "([^"]*)" from "([^"]*)"$/) do |option, field|
 end
 
 And(/^I fill in "([^"]*)" with "([^"]*)" for "([^"]*)"$/) do |element, value, dish|
-#binding.pry
-  #dish = Dish.get(params[:dish][:dish_name])
-  #id = dish.id
-  #within("##{id})") do
-    within("#1") do
-    # within("//li[@id='dish']") do
-    # within(option, visible: false) do
-    # within('dish', :visible => false) do
+  d = Dish.first(name: dish)
+  within("##{d.id}") do
     fill_in(element, with: value)
   end
 end
 
 And(/^I click on "([^"]*)" for "([^"]*)"$/) do |element, dish|
-  # binding.pry
-  within(dish.id.to_s) do
-    # expect(page).to have_text dish
-    # binding.pry
-    # within(expect(page).to have_text dish) do
+  d = Dish.first(name: dish)
+  within("##{d.id}") do
     click_link_or_button element
   end
 end
