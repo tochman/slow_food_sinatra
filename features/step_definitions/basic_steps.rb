@@ -12,7 +12,7 @@ Given(/^I am registerd and logged out admin$/) do
   steps '
     Given I am registerd as admin
     And I am on the home page
-    And I click on "Log_Out"
+    And I click on "Log Out"
     Then I should be on the "home" page
     And I should see "Successfully logged out"
   '
@@ -27,27 +27,17 @@ Given(/^I am registerd as admin$/) do
   login_as user
 end
 
-Given(/^I am registerd and logged out visitor$/) do
-  steps '
-    Given I am registerd as visitor
+Given(/^I am registerd and logged out as "([^"]*)"$/) do |name|
+  steps %Q(
+    Given I am registerd as #{name}
     And I am on the home page
-    And I click on "Log_Out"
-    Then I should be on the "home" page
-    And I should see "Successfully logged out"
-  '
+    And I click on "Log Out"
+  )
 end
 
-Given(/^I am logged in as Visitor$/) do
-  steps '
-    And I am on the home page
-    And I click on "Log_In"
-    Then I should be on the "login" page
-    And I fill in "user[username]" with "Visitor"
-    And I fill in "user[password]" with "password"
-    And I click on "Log In"
-    Then I should be on the "home" page
-    And I should see "Successfully logged in Visitor"
-    '
+Given(/^I am logged in as "([^"]*)"$/) do |name|
+  visitor = User.first(username: name)
+  login_as visitor
 end
 
 Given(/^I am not registerd at all$/) do
@@ -142,3 +132,4 @@ And(/^I click on "([^"]*)" for "([^"]*)"$/) do |element, dish|
     click_link_or_button element
   end
 end
+
