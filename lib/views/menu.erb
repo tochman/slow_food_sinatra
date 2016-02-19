@@ -7,7 +7,8 @@
   <p><%= dish.name %>
     -
     <%= dish.price %>kr</p>
-  <% if current_user %>
+
+  <% if current_user && !current_user.admin%>
   <form action="/menu/add_to_basket" method="post">
     <input type="hidden" name="basket_item[id]" , value="<%= dish.id %>"/>
     <label for="">Quantity</label>
@@ -16,17 +17,16 @@
     <!--%binding.pry%-->
   </form>
 </div>
-<% else %>
-<h2>Please log in to enjoy ordering!</h2>
-
 <% end %>
-
 <% end %>
-
 <% end %>
-
+<% unless current_user.admin %>
+<a href="/check_out" class="button">View Basket</a>
+<% else  current_user.admin%>
+<a href="/menu/add_dish" class="button">Add Dish</a>
+<% end %>
+<!--% else %>
+<h2>Please log in to enjoy ordering!</h2-->
 <% else %>
 <h2>You dont have any dishes yet</h2>
 <% end %>
-<a href="/check_out" class="button">View basket</a>
-<a href="/menu/add_dish" class="button">Add Dish</a>

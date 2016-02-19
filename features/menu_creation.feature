@@ -88,5 +88,14 @@ Feature: As a restuarnt owner
     And I am on the home page
     And I click on "Menu"
     Then I should be on the "Menu" page
-    And I click on "Add Dish"
-    And I should see "Please, enjoy ordering and leave dish creation to our Chef!"
+    Then I should not see "Add Dish"
+
+
+    Scenario: Add a dish as visitor even when am at the page
+      Given I am registerd as visitor
+      And I am on the Add Dish page
+      #And I click on "Menu"
+      #Then I should be on the "Menu" page
+      #Then I went to "menu/add_dish" page
+      Then I should be on the "Add Dish" page
+      And I should see "Please, enjoy ordering and leave dish creation to our Chef!"
