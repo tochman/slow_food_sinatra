@@ -1,37 +1,84 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <body>
-      <title>Sinatra Warden</title>
+<!doctype html>
+<html class="no-js" lang="en">
 
-      <h1>User authentication</h1>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>SlowFood S W</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.2/foundation.css">
+      <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.1/foundation.min.css"-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-      <p>
-        <a href="/menu">Menu</a>
+
+
+      </head>
+
+      <body>
+          <div id="top"></div>
+          <div class="contain-to-grid fixed">
+              <nav class="top-bar" data-topbar>
+                  <ul class="title-area">
+                      <li class="name">
+                          <h1>
+                              <a href="#">Slow Food</a>
+                          </h1>
+                  </section>
+              </nav>
+          </div>
+          <section class="jumbo">
+              <div class="row">
+                  <div class="large-12 columns">
+                      <h1>Where Slow means perfection!</h1>
+                      <p class="text-center">
+                        <a href="/menu" class="medium button radius" >Menu</a>
+                      </p>
+
+                  </div>
+              </div>
+          </section>
         <% if current_user.try(:admin) %>
-        <a href="/auth/admin/register">Register Admin</a>
+        <a href="/auth/admin/register" class="button" >Register Admin</a>
         <% end %>
         <% if current_user %>
         Logged in as
         <%= current_user.username %>
-        <a href="/auth/logout">Log_Out</a>
+        <a href="/auth/logout" class="secondary button" >Log_Out</a>
       <% else %>
-        <a href="/auth/register">Register</a>
-        <a href="/auth/login">Log_In</a>
+        <a href="/auth/register" class="button" >Register</a>
+        <a href="/auth/login" class="button" >Log_In</a>
         <% end %>
+        <div id="flash-container">
+          <% if flash[:success] %>
+          <div class="success callout">
+            <%= flash[:success] %>
+          </div>
+          <% end %>
 
-        <% if flash[:success] %>
-        <div style="color:green;">
-          <%= flash[:success] %>
+          <% if flash[:error] %>
+          <div class="alert callout">
+            <%= flash[:error] %>
+          </div>
+          <% end %>
         </div>
-        <% end %>
-
-        <% if flash[:error] %>
-        <div style="color:red;">
-          <%= flash[:error] %>
-        </div>
-        <% end %>
 
         <%= yield %>
       </body>
     </html>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.1.1/foundation.js"></script>
+    <script type="text/javascript">
+      function hideFlash() {
+        var flash = $('#flash-container');
+        if (flash.length > 0) {
+          window.setTimeout(function () {
+            flash.fadeTo(500, 0).slideUp(500, function () {
+              $(this).remove();
+            });
+          }, 5000);
+        }
+      }
+
+      $(document).ready(function () {
+        hideFlash();
+      });
+    </script>

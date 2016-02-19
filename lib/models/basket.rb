@@ -24,10 +24,10 @@ class Basket
     BasketItem.create(dish: obj, qty: qty, basket: self)
   end
 
-  def update_status(status)
-    @status = status
-    save
-  end
+  #def update_status(status)
+  #  @status = status
+  #  save
+  #end
 
   def set_pick_up_time
     Time.now + 1800

@@ -158,10 +158,11 @@ class SlowFood < Sinatra::Base
     erb :order_confirm
   end
 
-  post '/cancel_order' do
-    @basket = Basket.get(session[:b_id])
+  get '/cancel_order' do
+    #binding.pry
+    #@basket = Basket.get(session[:b_id])
     session.tap { |hs| hs.delete(:b_id) }
-    flash[:success] = 'Your order was cancelled'
+    flash[:error] = 'Your order was cancelled'
     redirect '/menu'
   end
 

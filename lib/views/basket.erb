@@ -1,7 +1,8 @@
 <% if current_user %>
 <% @basket.basket_items.each do |item |%>
 <div>
-  <p><%= item.qty %> Dishes of
+  <p><%= item.qty %>
+    Dishes of
     <%= item.dish.name %>, price per each:
     <%= item.dish.price %>kr</p>
   <% end %>
@@ -14,8 +15,8 @@
     <% fieldset(:basket) do |f| %>
     <%= f.hidden(:basket_id, value: @basket.id) %>
 
-    <input type="submit" value="Finalize order"/>
-    <input type="button" value="Cancel order"/>
+    <input type="submit" value="Finalize Order" class="button"/>
+    <input type="button" id="cancel" value="Cancel Order" class="secondary button"/>
     <% end %>
 
   <% else %>
@@ -24,3 +25,11 @@
     </p>
 
     <% end %>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#cancel').click(function () {
+          window.location.href = "/cancel_order";
+        });
+      });
+    </script>
