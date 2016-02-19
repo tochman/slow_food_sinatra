@@ -150,17 +150,15 @@ class SlowFood < Sinatra::Base
     erb :basket
   end
 
-
-
   post '/check_out' do
-    #binding.pry
     @basket = Basket.get(session[:b_id])
-    set_pick_up_time
+
+    #@basket.set_pick_up_time
+    #binding.pry
     erb :order_confirm
   end
 
   post '/cancel_order' do
-    binding.pry
     @basket = Basket.get(session[:b_id])
     session.tap { |hs| hs.delete(:b_id) }
     flash[:success] = 'Your order was cancelled'

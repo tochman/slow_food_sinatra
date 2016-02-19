@@ -1,8 +1,7 @@
 <% if current_user %>
 <% @basket.basket_items.each do |item |%>
 <div>
-  <p><%= item.qty %>
-    Dishes of
+  <p><%= item.qty %> Dishes of
     <%= item.dish.name %>, price per each:
     <%= item.dish.price %>kr</p>
   <% end %>

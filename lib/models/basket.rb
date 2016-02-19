@@ -6,8 +6,8 @@ class Basket
   property :created_on, Date
   property :updated_at, DateTime
   property :updated_on, Date
-  property :status, String, required: false
-  property :pick_up_time, DateTime, required: false
+  #property :status, String, required: false
+  #property :pick_up_time, DateTime,  required: false
 
   has n, :basket_items
   belongs_to :user
@@ -31,6 +31,10 @@ class Basket
 
   def set_pick_up_time
     Time.now + 1800
-    save
+  end
+
+  def buyer_name
+    name = User.first(id: user_id)
+    name.username
   end
 end
