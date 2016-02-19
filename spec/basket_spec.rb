@@ -6,7 +6,6 @@ describe Basket do
   it { is_expected.to have_property :created_on }
   it { is_expected.to have_property :updated_at }
   it { is_expected.to have_property :updated_on }
-  it { is_expected.to have_property :pick_up_time }
 
   it { is_expected.to have_many :basket_items }
   it { is_expected.to belong_to :user }
