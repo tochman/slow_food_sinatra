@@ -23,7 +23,7 @@ Given(/^I am registerd as admin$/) do
                      password: 'password',
                      password_confirmation: 'password',
                      admin: true
-                    )
+  )
   login_as user
 end
 
@@ -58,7 +58,7 @@ Given(/^the following users exists$/) do |table|
                     admin: hash[:admin],
                     email: hash[:email],
                     phone_number: hash[:phone_number]
-                   )
+    )
     user.save
   end
 end
@@ -75,10 +75,10 @@ end
 
 Given(/^I am on the ([^"]*)$/) do |page|
   case page
-  when 'home page'
-    visit '/'
-  when 'Add Dish page'
-    visit '/menu/add_dish'
+    when 'home page'
+      visit '/'
+    when 'Add Dish page'
+      visit '/menu/add_dish'
   end
 end
 
@@ -88,18 +88,18 @@ end
 
 Then(/^I should be on the "([^"]*)" page$/) do |page|
   case page
-  when 'Register'
-    expect(current_path).to eq '/auth/register'
-  when 'Register Admin'
-    expect(current_path).to eq '/auth/admin/register'
-  when 'login'
-    expect(current_path).to eq '/auth/login'
-  when 'Menu'
-    expect(current_path).to eq '/menu'
-  when 'home page'
-    expect(current_path).to eq '/'
-  when 'Add Dish'
-    expect(current_path).to eq '/menu/add_dish'
+    when 'Register'
+      expect(current_path).to eq '/auth/register'
+    when 'Register Admin'
+      expect(current_path).to eq '/auth/admin/register'
+    when 'login'
+      expect(current_path).to eq '/auth/login'
+    when 'Menu'
+      expect(current_path).to eq '/menu'
+    when 'home page'
+      expect(current_path).to eq '/'
+    when 'Add Dish'
+      expect(current_path).to eq '/menu/add_dish'
   end
 end
 
