@@ -25,39 +25,39 @@ Nothing else should be considered or implemented.
 ### User Stories
 ```
 # As a Guest
-In order to see the menu
+In order to see the menu,
 I should have a login credential to access the menu of the dishes.
 ```
 
 ```
 # As a User
-In order to get a good order
+In order to get a good order,
 I would like to see a list of dishes currently available in the menu
-with information about the price and the type.
+with informations about the prices and the types.
 ```
 
 ```
 # As a User
-In order to place an order
-I would like to be able to add dishes to the order a list of dishes currently available in the menu
+In order to place an order,
+I would like to be able to add dishes to the order list of dishes currently available in the menu
 with information about the time it takes to deliver my order.
 ```
 
 ```
 # As a Restaurant
-In order to have good menu to offer to the users
+In order to have good menu to offer to the users,
 I would like to be able to have a collection of dishes in a menu.
 ```
 
 ```
 # As a Restaurant
-In order to have orders I would like to be able to allow users to check out the menu that contains the
- dishes and give  them information when is there request will be proceeded.
+In order to have orders, I would like to be able to allow users to check out the menu that
+contains the dishes and give  them information when is there request will be proceeded.
 
 ```
 
 ```
 # As an Admin
- I would like to be able to update the information about the restaurant, add new dishes and also update
- the menu with the  new dish or remove dishes.
+ I would like to be able to update the information about the restaurant, add new dishes and
+ also update the menu with the  new dish or remove dishes.
 ```
