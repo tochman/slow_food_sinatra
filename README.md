@@ -52,22 +52,21 @@ I would like to be able to have a collection of dishes in a menu.
 ```
 # As a Restaurant
 In order to have orders, I would like to be able to allow users to check out the menu that
-contains the dishes and give  them information when is there request will be proceeded.
+contains the dishes and give them information when is there request will be processed.
 
 ```
 
 ```
 # As an Admin
- I would like to be able to update the information about the restaurant.
+In order to change the restaurant information, I would be able to update these information.
 ```
 
 ```
 # As an Admin
- I would like to be able to add new dishes and
- also update the menu with the  new dish.
+ In order to update the menu, I would be able to add new dishes from the menu.
 ```
 
 ```
 # As an Admin
- I would like to be able to remove dishes from the menu and update it.
+ In order to update the menu, I would like to be able to remove dishes from the menu.
 ```
