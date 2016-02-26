@@ -25,7 +25,7 @@ Nothing else should be considered or implemented.
 ### User Stories
 ```
 # As a Guest
-In order to see the menu,
+In order to order a dish,
 I should have a login credential to access the menu of the dishes.
 ```
 
@@ -58,6 +58,16 @@ contains the dishes and give  them information when is there request will be pro
 
 ```
 # As an Admin
- I would like to be able to update the information about the restaurant, add new dishes and
- also update the menu with the  new dish or remove dishes.
+ I would like to be able to update the information about the restaurant.
+```
+
+```
+# As an Admin
+ I would like to be able to add new dishes and
+ also update the menu with the  new dish.
+```
+
+```
+# As an Admin
+ I would like to be able to remove dishes from the menu and update it.
 ```
