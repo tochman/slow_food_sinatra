@@ -1,4 +1,3 @@
-
 class User
   include DataMapper::Resource
   # Include data mapper to use ORB. To tell DataMapper where to look.
@@ -22,6 +21,7 @@ class User
   property :username, String, length: 128
 
   property :password, BCryptHash
+  property :admin, Boolean, default: false
 
   def authenticate(attempted_password)
     if self.password == attempted_password
